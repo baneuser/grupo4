@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vista;
+package vista.interfaces;
 
 import controlador.LoginController;
 import java.util.ArrayList;
@@ -15,11 +15,16 @@ import javax.swing.JButton;
  */
 public interface ILogin extends IPadre {
     void setControlador(LoginController c);
-    JButton getJButton(String obj);
     
     ArrayList<String> getCredenciales();
     
-    static final String DATOS_INCOMPLETO = "DATOS INCOMPLETOS";
-    static final String USUARIO_NO_EXISTE = "Usuario no existe";
+    static final String DATOS_INCOMPLETO = "Campos vacios";
+    static final String USUARIO_NO_EXISTE = "Usuario o contraseña incorrecto";
+    static final String ERROR_BD = "ERROR DE BASE DE DATOS";
     static final String USUARIO_EXISTE = "Bienvenido";
+    
+    static final String JTF_USUARIO = "JTF_USUARIO";
+    static final String JPF_PASSWORD = "JPF_PASSWORD";
+    static final String JBT_ACEPTAR = "JBT_ACEPTAR";
+    static final String JBT_LIMPIAR = "JBT_LIMPIAR";
 }

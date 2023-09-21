@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vista;
+package dao;
+
+import model.EspecialidadesModel;
+import model.UsuarioModel;
 
 /**
  *
  * @author Usuario
  */
-public interface IMenu extends IPadre {
+public interface EspecialidadesDAO extends CRUD<EspecialidadesModel>{
     
-    static final String TITULO_RAIZ = "BIENVENIDO ";
 }

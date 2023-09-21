@@ -5,6 +5,7 @@
  */
 package vista;
 
+import vista.interfaces.ILogin;
 import controlador.LoginController;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -23,7 +24,9 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
      */
     public JFLogin() {
         initComponents();
-        jbtAceptar.setName(IPadre.JBACEPTAR);
+        jbtAceptar.setName(JBT_ACEPTAR);
+        jtfUsuario.setName(JTF_USUARIO);
+        jpfPassword.setName(JPF_PASSWORD);
     }
 
     /**
@@ -43,50 +46,57 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
         jpfPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login - SAMC");
 
         jLabel1.setText("Usuario");
 
+        jtfUsuario.setText("admin");
+
         jLabel2.setText("Contraseña");
 
-        jbtAceptar.setText("Aceptar");
+        jbtAceptar.setText("Login");
 
         jbtLimpiar.setText("Limpiar");
+
+        jpfPassword.setText("1234");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jpfPassword)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jtfUsuario, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbtAceptar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                        .addComponent(jbtLimpiar))
-                    .addComponent(jtfUsuario))
-                .addGap(47, 47, 47))
+                        .addGap(0, 41, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jbtLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jpfPassword, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jbtAceptar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)))))
+                .addGap(39, 39, 39))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jtfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jpfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtAceptar)
-                    .addComponent(jbtLimpiar))
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addComponent(jbtAceptar)
+                .addGap(27, 27, 27)
+                .addComponent(jbtLimpiar)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
@@ -114,8 +124,6 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
             lista = new ArrayList<>();
             lista.add(jtfUsuario.getText());
             lista.add(new String(jpfPassword.getPassword()));
-        } else {
-            mostrarPanel(DATOS_INCOMPLETO);
         }
         return lista;
     }
@@ -126,6 +134,11 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
         this.setVisible(true);
         getRootPane().setDefaultButton(jbtAceptar);
         centrarVentana();
+    }
+    
+    @Override
+    public void ocultar() {
+        this.setVisible(false);
     }
     
     public void centrarVentana() {
@@ -145,26 +158,9 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
     }
 
     @Override
-    public JButton getJButton(String obj) {
-        JButton jbt = null;
-        switch (obj) {
-            case JBACEPTAR:
-                jbt = jbtAceptar;
-                break;
-            case JBLIMPIAR:
-                jbt = jbtLimpiar;
-                break;
-            default:
-                throw new AssertionError();
-        }
-        return jbt;
-    }
-
-    @Override
     public void limpiarTexto() {
         jtfUsuario.setText("");
         jpfPassword.setText("");
-        jtfUsuario.requestFocus();
     }
 
     @Override
@@ -181,5 +177,40 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
     public void setTitulo(String txt) {
         this.setTitle(txt);
     }
+    
+    @Override
+    public Object getObjeto(String id) {
+        Object o = null;
+        switch (id) {
+            case JBT_ACEPTAR:
+                o = jbtAceptar;
+                break;
+            case JBT_LIMPIAR:
+                o = jbtLimpiar;
+                break;
+            default:
+                throw new AssertionError();
+        }
+        return o;
+    }
     // </editor-fold>
+
+    @Override
+    public void setTexto(String obj, String txt) {
+    }
+
+    @Override
+    public void limpiarTexto(String obj) {
+        switch (obj) {
+            case JTF_USUARIO:
+                jtfUsuario.setText("");
+                break;
+            case JPF_PASSWORD:
+                jpfPassword.setText("");
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }
+
 }

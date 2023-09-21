@@ -6,10 +6,18 @@
 package main;
 
 import controlador.LoginController;
+//import controlador.MenuController;
+//import controlador.PerfilController;
 import dao.Conexion;
 import model.UsuarioModel;
-import vista.ILogin;
+import vista.JFEspecialidades;
+import vista.interfaces.ILogin;
+import vista.interfaces.IMenu;
+import vista.interfaces.IPerfil;
 import vista.JFLogin;
+import vista.JFMenu;
+import vista.JFPerfil;
+import vista.interfaces.IEspecialidades;
 
 /**
  *
@@ -24,10 +32,16 @@ public class Programa {
         
         // Vista
         ILogin vLogin = new JFLogin();
+        IMenu vMenu = new JFMenu();
+        IPerfil vPerfil = new JFPerfil();
+        IEspecialidades vEspecialidades = new JFEspecialidades();
         
         // Controladores
-        LoginController cLogin = new LoginController(vLogin, mUsuario);
+        LoginController cLogin = new LoginController(vLogin, vMenu, vPerfil, vEspecialidades, mUsuario);
         vLogin.setControlador(cLogin);
+        vMenu.setControlador(cLogin);
+        vPerfil.setControlador(cLogin);
+        vEspecialidades.setControlador(cLogin);
         
         // Inicia
         vLogin.arranca();
