@@ -5,8 +5,12 @@
  */
 package vista;
 
+import controlador.LoginController;
+import vista.interfaces.IMenu;
+//import controlador.MenuController;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,6 +23,9 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
      */
     public JFMenu() {
         initComponents();
+        jmiPerfil.setName(JMI_PERFIL);
+        jmiEspecialidades.setName(JMI_ESPECIALIDADES);
+        jmiCerrarSesion.setName(JMI_CERRARSESION);
     }
 
     /**
@@ -32,19 +39,36 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jmiEspecialidades = new javax.swing.JMenuItem();
+        jmiCerrarSesion = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jmiPerfil = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jMenu1.setText("File");
 
-        jMenuItem1.setText("Registrar Paciente");
-        jMenu1.add(jMenuItem1);
+        jMenuItem2.setText("Registrar Paciente");
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setText("Horario");
+        jMenu1.add(jMenuItem3);
+
+        jmiEspecialidades.setText("Especialidades");
+        jMenu1.add(jmiEspecialidades);
+
+        jmiCerrarSesion.setText("Cerrar Sesion");
+        jMenu1.add(jmiCerrarSesion);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
+
+        jmiPerfil.setText("Perfil");
+        jMenu2.add(jmiPerfil);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -53,11 +77,11 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 574, Short.MAX_VALUE)
+            .addGap(0, 839, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 312, Short.MAX_VALUE)
+            .addGap(0, 439, Short.MAX_VALUE)
         );
 
         pack();
@@ -67,7 +91,11 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jmiCerrarSesion;
+    private javax.swing.JMenuItem jmiEspecialidades;
+    private javax.swing.JMenuItem jmiPerfil;
     // End of variables declaration//GEN-END:variables
 
     // <editor-fold defaultstate="collapsed" desc="IPadre">
@@ -76,6 +104,11 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
         this.setVisible(true);
 //        getRootPane().setDefaultButton(jbtAceptar);
         centrarVentana();
+    }
+    
+    @Override
+    public void ocultar() {
+        this.setVisible(false);
     }
     
     public void centrarVentana() {
@@ -91,7 +124,7 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
 
     @Override
     public void mostrarPanel(String txt) {
-//        JOptionPane.showMessageDialog(null, txt);
+        JOptionPane.showMessageDialog(null, txt);
     }
 
     @Override
@@ -116,4 +149,39 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
         this.setTitle(txt);
     }
     // </editor-fold>
+
+    @Override
+    public void setControlador(LoginController c) {
+        jmiPerfil.addActionListener(c);
+        jmiEspecialidades.addActionListener(c);
+        jmiCerrarSesion.addActionListener(c);
+    }
+    
+    @Override
+    public Object getObjeto(String id) {
+        Object o = null;
+        switch (id) {
+            case JMI_PERFIL:
+                o = jmiPerfil;
+                break;
+            case JMI_ESPECIALIDADES:
+                o = jmiEspecialidades;
+                break;
+            case JMI_CERRARSESION:
+                o = jmiCerrarSesion;
+                break;
+            default:
+                throw new AssertionError();
+        }
+        return o;
+    }
+
+    @Override
+    public void setTexto(String obj, String txt) {
+    }
+
+    @Override
+    public void limpiarTexto(String obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

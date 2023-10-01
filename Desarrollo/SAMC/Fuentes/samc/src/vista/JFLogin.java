@@ -5,6 +5,7 @@
  */
 package vista;
 
+import vista.interfaces.ILogin;
 import controlador.LoginController;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -23,7 +24,12 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
      */
     public JFLogin() {
         initComponents();
-        jbtAceptar.setName(IPadre.JBACEPTAR);
+        jbtAceptar.setName(JBT_ACEPTAR);
+        jtfUsuario.setName(JTF_USUARIO);
+        jpfPassword.setName(JPF_PASSWORD);
+        
+        
+                
     }
 
     /**
@@ -35,66 +41,70 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jtfUsuario = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jbtAceptar = new javax.swing.JButton();
         jbtLimpiar = new javax.swing.JButton();
         jpfPassword = new javax.swing.JPasswordField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login - SAMC");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Usuario");
+        jtfUsuario.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jtfUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtfUsuario.setText("Ingresar correo electronico");
+        jtfUsuario.setBorder(null);
+        getContentPane().add(jtfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 251, 30));
 
-        jLabel2.setText("Contraseña");
+        jbtAceptar.setBackground(new java.awt.Color(102, 204, 255));
+        jbtAceptar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jbtAceptar.setText("Ingresar");
+        jbtAceptar.setBorder(null);
+        getContentPane().add(jbtAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 360, 251, 30));
 
-        jbtAceptar.setText("Aceptar");
+        jbtLimpiar.setBackground(new java.awt.Color(255, 102, 102));
+        jbtLimpiar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jbtLimpiar.setBorder(null);
+        getContentPane().add(jbtLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 300, 30, 20));
 
-        jbtLimpiar.setText("Limpiar");
+        jpfPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jpfPassword.setText("1234");
+        jpfPassword.setBorder(null);
+        jpfPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jpfPasswordActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jpfPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 251, 30));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jpfPassword)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbtAceptar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                        .addComponent(jbtLimpiar))
-                    .addComponent(jtfUsuario))
-                .addGap(47, 47, 47))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jtfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jpfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtAceptar)
-                    .addComponent(jbtLimpiar))
-                .addContainerGap(120, Short.MAX_VALUE))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/WhatsApp_Image_2023-09-25_at_1.09.35_PM-removebg-preview.png"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 0, 80, 90));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user-icon-png-pnglogocom-133466 (1) (1).png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 250, 230));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo.png"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 410, 300));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/image (1).png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jpfPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpfPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jpfPasswordActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JButton jbtAceptar;
     private javax.swing.JButton jbtLimpiar;
     private javax.swing.JPasswordField jpfPassword;
@@ -128,6 +138,11 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
         centrarVentana();
     }
     
+    @Override
+    public void ocultar() {
+        this.setVisible(false);
+    }
+    
     public void centrarVentana() {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         int anchoVentana = getWidth();
@@ -145,26 +160,9 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
     }
 
     @Override
-    public JButton getJButton(String obj) {
-        JButton jbt = null;
-        switch (obj) {
-            case JBACEPTAR:
-                jbt = jbtAceptar;
-                break;
-            case JBLIMPIAR:
-                jbt = jbtLimpiar;
-                break;
-            default:
-                throw new AssertionError();
-        }
-        return jbt;
-    }
-
-    @Override
     public void limpiarTexto() {
         jtfUsuario.setText("");
         jpfPassword.setText("");
-        jtfUsuario.requestFocus();
     }
 
     @Override
@@ -181,5 +179,40 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
     public void setTitulo(String txt) {
         this.setTitle(txt);
     }
+    
+    @Override
+    public Object getObjeto(String id) {
+        Object o = null;
+        switch (id) {
+            case JBT_ACEPTAR:
+                o = jbtAceptar;
+                break;
+            case JBT_LIMPIAR:
+                o = jbtLimpiar;
+                break;
+            default:
+                throw new AssertionError();
+        }
+        return o;
+    }
     // </editor-fold>
+
+    @Override
+    public void setTexto(String obj, String txt) {
+    }
+
+    @Override
+    public void limpiarTexto(String obj) {
+        switch (obj) {
+            case JTF_USUARIO:
+                jtfUsuario.setText("");
+                break;
+            case JPF_PASSWORD:
+                jpfPassword.setText("");
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }
+
 }
