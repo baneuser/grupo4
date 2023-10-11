@@ -50,7 +50,7 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
 
         jLabel1.setText("Usuario");
 
-        jtfUsuario.setText("admin");
+        jtfUsuario.setText("gamossj");
 
         jLabel2.setText("Contraseña");
 
@@ -211,6 +211,11 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
             default:
                 throw new AssertionError();
         }
+    }
+
+    @Override
+    public String getTexto(String obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

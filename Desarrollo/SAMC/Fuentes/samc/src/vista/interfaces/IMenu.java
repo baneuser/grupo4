@@ -15,7 +15,7 @@ import controlador.LoginController;
 public interface IMenu extends IPadre {
     void setControlador(LoginController c);
     
-    static final String TITULO_SISTEMA = "SISTEMA DE ATENCIÓN DE CITAS MÉDICAS (SAMC) - BIENVENIDO ";
+    static final String TITULO_SISTEMA = "SAMC v1.0 - Plutón SAC / ";
     
     static final String JMI_PERFIL = "JMIPERFIL";
     static final String JMI_ESPECIALIDADES = "JMIESPECIALIDADES";

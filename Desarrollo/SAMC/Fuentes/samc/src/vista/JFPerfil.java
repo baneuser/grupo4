@@ -10,6 +10,8 @@ import vista.interfaces.IPerfil;
 //import controlador.PerfilController;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class JFPerfil extends javax.swing.JFrame implements IPerfil {
 
+    private DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
     /**
      * Creates new form JFPerfil
      */
@@ -29,8 +32,12 @@ public class JFPerfil extends javax.swing.JFrame implements IPerfil {
         jtfApellido.setName(JTF_APELLIDO);
         jtfEmail.setName(JTF_EMAIL);
         jtfFCreacion.setName(JTF_FCREACION);
+        jtfFModificacion.setName(JTF_FMODIFICACION);
         jckbActivo.setName(JCKB_ACTIVO);
-        jckbAdmin.setName(JCKB_ADMIN);
+        jcbRol.setName(JCB_ROL);
+        jbtCambiarPassword.setName(JBT_CAMBIARPASSWORD);
+        jbtCerrar.setName(JBT_CERRAR);
+        jbtGuardar.setName(JBT_GUARDAR);
     }
 
     /**
@@ -50,16 +57,21 @@ public class JFPerfil extends javax.swing.JFrame implements IPerfil {
         jtfApellido = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jtfEmail = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jbtCambiarPassword = new javax.swing.JButton();
         jckbActivo = new javax.swing.JCheckBox();
-        jckbAdmin = new javax.swing.JCheckBox();
         jLabel5 = new javax.swing.JLabel();
         jtfFCreacion = new javax.swing.JTextField();
         jlbBienvenida = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jbtGuardar = new javax.swing.JButton();
+        jbtCerrar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jtfFModificacion = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jcbRol = new javax.swing.JComboBox<>();
 
         jLabel1.setText("Usuario");
+
+        jtfUsuario.setEditable(false);
 
         jLabel2.setText("Nombre");
 
@@ -67,20 +79,26 @@ public class JFPerfil extends javax.swing.JFrame implements IPerfil {
 
         jLabel4.setText("Email");
 
-        jButton1.setText("Cambiar Contraseña");
+        jbtCambiarPassword.setText("Cambiar Contraseña");
 
         jckbActivo.setText("Activo");
 
-        jckbAdmin.setText("Admin");
-
         jLabel5.setText("Fecha creación");
+
+        jtfFCreacion.setEditable(false);
 
         jlbBienvenida.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jlbBienvenida.setText("Hola NOMBRE_APELLIDO,");
 
-        jButton2.setText("Guardar");
+        jbtGuardar.setText("Guardar");
 
-        jButton4.setText("Cerrar");
+        jbtCerrar.setText("Cerrar");
+
+        jLabel6.setText("Fecha modificación");
+
+        jtfFModificacion.setEditable(false);
+
+        jLabel7.setText("Rol");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,33 +107,36 @@ public class JFPerfil extends javax.swing.JFrame implements IPerfil {
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jlbBienvenida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlbBienvenida, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jckbActivo))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtfNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtfApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtfEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtfFCreacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1))
-                            .addComponent(jckbAdmin)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(jbtGuardar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton4)))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                                .addComponent(jbtCerrar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jcbRol, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jtfUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                                    .addComponent(jtfNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                                    .addComponent(jtfApellido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                                    .addComponent(jtfEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                                    .addComponent(jtfFCreacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                                    .addComponent(jtfFModificacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jbtCambiarPassword)
+                                    .addComponent(jckbActivo))))))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,11 +147,12 @@ public class JFPerfil extends javax.swing.JFrame implements IPerfil {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jtfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jbtCambiarPassword))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jckbActivo))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -143,35 +165,42 @@ public class JFPerfil extends javax.swing.JFrame implements IPerfil {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jtfFCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jckbActivo)
-                    .addComponent(jckbAdmin))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel6)
+                    .addComponent(jtfFModificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton4))
-                .addContainerGap(52, Short.MAX_VALUE))
+                    .addComponent(jcbRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtGuardar)
+                    .addComponent(jbtCerrar))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JButton jbtCambiarPassword;
+    private javax.swing.JButton jbtCerrar;
+    private javax.swing.JButton jbtGuardar;
+    private javax.swing.JComboBox<String> jcbRol;
     private javax.swing.JCheckBox jckbActivo;
-    private javax.swing.JCheckBox jckbAdmin;
     private javax.swing.JLabel jlbBienvenida;
     private javax.swing.JTextField jtfApellido;
     private javax.swing.JTextField jtfEmail;
     private javax.swing.JTextField jtfFCreacion;
+    private javax.swing.JTextField jtfFModificacion;
     private javax.swing.JTextField jtfNombre;
     private javax.swing.JTextField jtfUsuario;
     // End of variables declaration//GEN-END:variables
@@ -230,20 +259,28 @@ public class JFPerfil extends javax.swing.JFrame implements IPerfil {
     @Override
     public Object getObjeto(String id) {
         Object o = null;
-//        switch (id) {
-//            case JMIPERFIL:
-//                o = jmiPerfil;
-//                break;
-//            default:
-//                throw new AssertionError();
-//        }
+        switch (id) {
+            case JBT_CAMBIARPASSWORD:
+                o = jbtCambiarPassword;
+                break;
+            case JBT_CERRAR:
+                o = jbtCerrar;
+                break;
+            case JBT_GUARDAR:
+                o = jbtGuardar;
+                break;
+            default:
+                throw new AssertionError();
+        }
         return o;
     }
     // </editor-fold>
 
     @Override
     public void setControlador(LoginController c) {
-        
+        jbtCambiarPassword.addActionListener(c);
+        jbtGuardar.addActionListener(c);
+        jbtCerrar.addActionListener(c);
     }
 
     @Override
@@ -267,11 +304,14 @@ public class JFPerfil extends javax.swing.JFrame implements IPerfil {
             case JTF_FCREACION:
                 jtfFCreacion.setText(txt);
                 break;
+            case JTF_FMODIFICACION:
+                jtfFModificacion.setText(txt);
+                break;
             case JCKB_ACTIVO:
                 jckbActivo.setSelected(Boolean.parseBoolean(txt));
                 break;
-            case JCKB_ADMIN:
-                jckbAdmin.setSelected(Boolean.parseBoolean(txt));
+            case JCB_ROL:
+                jcbRol.setSelectedIndex(Integer.parseInt(txt));
                 break;
             default:
                 throw new AssertionError();
@@ -281,5 +321,47 @@ public class JFPerfil extends javax.swing.JFrame implements IPerfil {
     @Override
     public void limpiarTexto(String obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void actualizarRoles(String[] data) {
+        model = new DefaultComboBoxModel<>(data);
+//        jcbRol = new JComboBox<>(model);
+        jcbRol.setModel(model);
+        
+        jcbRol.revalidate();
+    }
+
+    @Override
+    public void setHabilitar(String obj, boolean b) {
+        switch (obj) {
+            case JCKB_ACTIVO:
+                jckbActivo.setEnabled(b);
+                break;
+            case JCB_ROL:
+                jcbRol.setEnabled(b);
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }
+
+    @Override
+    public String getTexto(String obj) {
+        String txt = null;
+        switch (obj) {
+            case JTF_NOMBRE:
+                txt = jtfNombre.getText();
+                break;
+            case JTF_APELLIDO:
+                txt = jtfApellido.getText();
+                break;
+            case JTF_EMAIL:
+                txt = jtfEmail.getText();
+                break;
+            default:
+                throw new AssertionError();
+        }
+        return txt;
     }
 }

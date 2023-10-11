@@ -184,4 +184,9 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
     public void limpiarTexto(String obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public String getTexto(String obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

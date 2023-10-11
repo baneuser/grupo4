@@ -43,14 +43,15 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             // Procesar el resultado
             while (resultSet.next()) {
                 mUsuario.setId(resultSet.getInt("idusuario"));
-                mUsuario.setNombreusuario(resultSet.getString("nombreusuario"));
+                mUsuario.setUsuario(resultSet.getString("usuario"));
                 mUsuario.setNombre(resultSet.getString("nombre"));
                 mUsuario.setApellido(resultSet.getString("apellido"));
                 mUsuario.setEmail(resultSet.getString("email"));
+                mUsuario.setPassword(resultSet.getString("password"));
+                mUsuario.setActivo(resultSet.getInt("activo"));
                 mUsuario.setFecha_creacion(resultSet.getTimestamp("fecha_creacion"));
-//                mUsuario.setPassword(resultSet.getString("password"));
-                mUsuario.setEsta_activo(resultSet.getInt("esta_activo"));
-                mUsuario.setEs_admin(resultSet.getInt("es_admin"));
+                mUsuario.setFecha_modificacion(resultSet.getTimestamp("fecha_modificacion"));
+                mUsuario.setIdRol(resultSet.getInt("idRol"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,7 +67,25 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
     @Override
     public void actualizar(UsuarioModel t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Conexion.getInstancia().conectar();
+            
+            String sql = "CALL actualizarUsuario(?, ?, ?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement stmt = Conexion.getInstancia().conexion.prepareStatement(sql)) {
+                stmt.setInt(1, t.getId());
+                stmt.setString(2, t.getNombre());
+                stmt.setString(3, t.getApellido());
+                stmt.setString(4, t.getEmail());
+                stmt.setString(5, t.getPassword());
+                stmt.setInt(6, t.getActivo());
+                stmt.setTimestamp(7, t.getFecha_modificacion());
+                stmt.setInt(8, t.getIdRol());
+                stmt.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Exception ->"+ e.getMessage());
+        }
     }
 
     @Override

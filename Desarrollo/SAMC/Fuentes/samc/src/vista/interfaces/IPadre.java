@@ -5,8 +5,6 @@
  */
 package vista.interfaces;
 
-import javax.swing.JButton;
-
 /**
  *
  * @author Usuario
@@ -21,7 +19,9 @@ public interface IPadre {
     void setTitulo(String txt);
     Object getObjeto(String id);
     void setTexto(String obj, String txt);
+    String getTexto(String obj);
     void limpiarTexto(String obj);
     
     //VARIABLES GLOBALES
+    static final String ERROR_BD = "Error de Base de datos";
 }

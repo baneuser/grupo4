@@ -5,7 +5,8 @@
  */
 package model;
 
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -13,14 +14,15 @@ import java.util.Date;
  */
 public class UsuarioModel {
     private int id;
-    private String nombreusuario;
+    private String usuario;
     private String nombre;
     private String apellido;
     private String email;
     private String password;
-    private int esta_activo;
-    private int es_admin;
-    private Date fecha_creacion;
+    private int activo;
+    private Timestamp fecha_creacion;
+    private Timestamp fecha_modificacion;
+    private int idrol;
 
     public int getId() {
         return id;
@@ -30,12 +32,12 @@ public class UsuarioModel {
         this.id = id;
     }
 
-    public String getNombreusuario() {
-        return nombreusuario;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setNombreusuario(String nombreusuario) {
-        this.nombreusuario = nombreusuario;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getNombre() {
@@ -70,28 +72,36 @@ public class UsuarioModel {
         this.password = password;
     }
 
-    public int getEsta_activo() {
-        return esta_activo;
+    public int getActivo() {
+        return activo;
     }
 
-    public void setEsta_activo(int esta_activo) {
-        this.esta_activo = esta_activo;
+    public void setActivo(int activo) {
+        this.activo = activo;
     }
 
-    public int getEs_admin() {
-        return es_admin;
-    }
-
-    public void setEs_admin(int es_admin) {
-        this.es_admin = es_admin;
-    }
-
-    public Date getFecha_creacion() {
+    public Timestamp getFecha_creacion() {
         return fecha_creacion;
     }
 
-    public void setFecha_creacion(Date fecha_creacion) {
+    public void setFecha_creacion(Timestamp fecha_creacion) {
         this.fecha_creacion = fecha_creacion;
+    }
+
+    public Timestamp getFecha_modificacion() {
+        return fecha_modificacion;
+    }
+
+    public void setFecha_modificacion(Timestamp fecha_modificacion) {
+        this.fecha_modificacion = fecha_modificacion;
+    }
+
+    public int getIdRol() {
+        return idrol;
+    }
+
+    public void setIdRol(int rol) {
+        this.idrol = rol;
     }
     
     

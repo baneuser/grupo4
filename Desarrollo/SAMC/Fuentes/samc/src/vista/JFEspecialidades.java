@@ -41,7 +41,6 @@ public class JFEspecialidades extends javax.swing.JFrame implements IEspecialida
         jtbEspecialidades = new javax.swing.JTable();
         jbtCerrar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Especialidades");
 
         jtbEspecialidades.setModel(new javax.swing.table.DefaultTableModel(
@@ -82,10 +81,10 @@ public class JFEspecialidades extends javax.swing.JFrame implements IEspecialida
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jbtCerrar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -169,7 +168,7 @@ public class JFEspecialidades extends javax.swing.JFrame implements IEspecialida
 
     @Override
     public void actualizarTabla(Object[][] data) {
-//        model = new DefaultTableModel();
+        model = new DefaultTableModel();
 //        jtbEspecialidades.setModel(model);
 //        model = (DefaultTableModel) jtbEspecialidades.getModel();
         model.addColumn("Codigo");
@@ -183,6 +182,11 @@ public class JFEspecialidades extends javax.swing.JFrame implements IEspecialida
 
     @Override
     public void limpiarTexto(String obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getTexto(String obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

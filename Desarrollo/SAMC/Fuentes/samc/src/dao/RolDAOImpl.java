@@ -11,23 +11,22 @@ import java.sql.ResultSet;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
-import model.EspecialidadesModel;
-import model.UsuarioModel;
+import model.RolModel;
 
 /**
  *
  * @author Usuario
  */
-public class EspecialidadesDAOImpl implements EspecialidadesDAO {
+public class RolDAOImpl implements RolDAO {
 
     @Override
-    public List<EspecialidadesModel> listar() {
-        List<EspecialidadesModel> lista = null;
-        EspecialidadesModel mEspecialidades = null;
+    public List<RolModel> listar() {
+        List<RolModel> lista = null;
+        RolModel mRol = null;
         try {
             Conexion.getInstancia().conectar();
             // Llamar al procedimiento almacenado
-            String sql = "{ CALL centromedico.getEspecialidades() }";
+            String sql = "{ CALL centromedico.getRoles() }";
             PreparedStatement preparedStatement = Conexion.getInstancia().conexion.prepareStatement(sql);
 //            preparedStatement.setInt(1, id);
 //            preparedStatement.execute();
@@ -40,10 +39,11 @@ public class EspecialidadesDAOImpl implements EspecialidadesDAO {
             lista = new ArrayList<>();
             // Procesar el resultado
             while (resultSet.next()) {
-                mEspecialidades = new EspecialidadesModel();
-                mEspecialidades.setIdCategoria(resultSet.getInt("idespecialidad"));
-                mEspecialidades.setNombre(resultSet.getString("nombre"));
-                lista.add(mEspecialidades);
+                mRol = new RolModel();
+                mRol.setIdrol(resultSet.getInt("idrol"));
+                mRol.setNombre(resultSet.getString("nombre"));
+                mRol.setSiglas(resultSet.getString("siglas"));
+                lista.add(mRol);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,17 +53,42 @@ public class EspecialidadesDAOImpl implements EspecialidadesDAO {
     }
 
     @Override
-    public EspecialidadesModel leer(int id) {
+    public RolModel leer(int id) {
+        RolModel mRol = null;
+        try {
+            Conexion.getInstancia().conectar();
+            // Llamar al procedimiento almacenado
+            String sql = "{ CALL centromedico.getRolPorId(?) }";
+            PreparedStatement preparedStatement = Conexion.getInstancia().conexion.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+//            preparedStatement.execute();
+            
+            // Recuperar el resultado en un ResultSet
+//            ResultSet resultSet = callableStatement.getResultSet();
+            ResultSet resultSet = preparedStatement.executeQuery();
+//            boolean encontrado = resultSet.first();
+            
+            mRol = new RolModel();
+            // Procesar el resultado
+            while (resultSet.next()) {
+                mRol.setIdrol(resultSet.getInt("idrol"));
+                mRol.setNombre(resultSet.getString("nombre"));
+                mRol.setSiglas(resultSet.getString("siglas"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Exception ->"+ e.getMessage());
+        }
+        return mRol;
+    }
+
+    @Override
+    public void registrar(RolModel t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void registrar(EspecialidadesModel t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void actualizar(EspecialidadesModel t) {
+    public void actualizar(RolModel t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -72,4 +97,5 @@ public class EspecialidadesDAOImpl implements EspecialidadesDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    
 }
