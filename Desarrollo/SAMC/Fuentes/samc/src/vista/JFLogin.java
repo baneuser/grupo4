@@ -55,6 +55,7 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jtfUsuario.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jtfUsuario.setForeground(new java.awt.Color(153, 153, 153));
         jtfUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jtfUsuario.setText("Ingresar correo electronico");
         jtfUsuario.setBorder(null);
@@ -71,6 +72,7 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
         jbtLimpiar.setBorder(null);
         getContentPane().add(jbtLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 300, 30, 20));
 
+        jpfPassword.setForeground(new java.awt.Color(153, 153, 153));
         jpfPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jpfPassword.setText("1234");
         jpfPassword.setBorder(null);
@@ -82,7 +84,7 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
         getContentPane().add(jpfPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 251, 30));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/WhatsApp_Image_2023-09-25_at_1.09.35_PM-removebg-preview.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 0, 80, 90));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 0, 90, 80));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user-icon-png-pnglogocom-133466 (1) (1).png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 250, 230));
