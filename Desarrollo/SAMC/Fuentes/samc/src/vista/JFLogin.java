@@ -7,6 +7,7 @@ package vista;
 
 import vista.interfaces.ILogin;
 import controlador.LoginController;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -22,11 +23,13 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
     /**
      * Creates new form JFLogin
      */
+    int xMouse, yMouse;
     public JFLogin() {
         initComponents();
         jbtAceptar.setName(JBT_ACEPTAR);
         jtfUsuario.setName(JTF_USUARIO);
         jpfPassword.setName(JPF_PASSWORD);
+        setSize(854, 480);
     }
 
     /**
@@ -38,73 +41,206 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jtfUsuario = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jbtAceptar = new javax.swing.JButton();
         jbtLimpiar = new javax.swing.JButton();
         jpfPassword = new javax.swing.JPasswordField();
+        exitPanel = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login - SAMC");
+        setLocationByPlatform(true);
+        setUndecorated(true);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Usuario");
+        jtfUsuario.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jtfUsuario.setForeground(new java.awt.Color(153, 153, 153));
+        jtfUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtfUsuario.setText("Ingresar correo electronico");
+        jtfUsuario.setBorder(null);
+        jtfUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jtfUsuarioMousePressed(evt);
+            }
+        });
+        getContentPane().add(jtfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 251, 30));
 
-        jtfUsuario.setText("gamossj");
+        jbtAceptar.setBackground(new java.awt.Color(102, 204, 255));
+        jbtAceptar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jbtAceptar.setText("Ingresar");
+        jbtAceptar.setBorder(null);
+        jbtAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbtAceptarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbtAceptarMouseExited(evt);
+            }
+        });
+        getContentPane().add(jbtAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 360, 251, 30));
 
-        jLabel2.setText("Contraseña");
+        jbtLimpiar.setBackground(new java.awt.Color(255, 28, 28));
+        jbtLimpiar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jbtLimpiar.setBorder(null);
+        jbtLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbtLimpiarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbtLimpiarMouseExited(evt);
+            }
+        });
+        getContentPane().add(jbtLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 300, 30, 20));
 
-        jbtAceptar.setText("Login");
+        jpfPassword.setForeground(new java.awt.Color(153, 153, 153));
+        jpfPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jpfPassword.setText("****");
+        jpfPassword.setBorder(null);
+        jpfPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jpfPasswordMousePressed(evt);
+            }
+        });
+        jpfPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jpfPasswordActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jpfPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 251, 30));
 
-        jbtLimpiar.setText("Limpiar");
+        exitPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exitPanel.setOpaque(false);
+        exitPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitPanelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                exitPanelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                exitPanelMouseExited(evt);
+            }
+        });
 
-        jpfPassword.setText("1234");
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("X");
+        exitPanel.add(jLabel5);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jtfUsuario, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 41, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jbtLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jpfPassword, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jbtAceptar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)))))
-                .addGap(39, 39, 39))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jbtAceptar)
-                .addGap(27, 27, 27)
-                .addComponent(jbtLimpiar)
-                .addContainerGap(29, Short.MAX_VALUE))
-        );
+        getContentPane().add(exitPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 50, 50));
+
+        jPanel1.setOpaque(false);
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+        });
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 40));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/WhatsApp_Image_2023-09-25_at_1.09.35_PM-removebg-preview.png"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 90));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user-icon-png-pnglogocom-133466 (1) (1).png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 250, 230));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo.png"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 410, 300));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/image (1).png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jpfPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpfPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jpfPasswordActionPerformed
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_jPanel1MousePressed
+
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xMouse,y - yMouse);
+    }//GEN-LAST:event_jPanel1MouseDragged
+
+    private void exitPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitPanelMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_exitPanelMouseClicked
+
+    private void exitPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitPanelMouseEntered
+        exitPanel.setBackground(Color.red);
+        exitPanel.setOpaque(true);
+        exitPanel.setForeground(Color.black);
+    }//GEN-LAST:event_exitPanelMouseEntered
+
+    private void exitPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitPanelMouseExited
+        exitPanel.setBackground(Color.white);
+        exitPanel.setForeground(Color.white);
+        exitPanel.setOpaque(false);
+    }//GEN-LAST:event_exitPanelMouseExited
+
+    private void jbtAceptarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtAceptarMouseEntered
+        jbtAceptar.setBackground(new Color(153,220,255));
+    }//GEN-LAST:event_jbtAceptarMouseEntered
+
+    private void jbtAceptarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtAceptarMouseExited
+        jbtAceptar.setBackground(new Color(102,204,255));
+    }//GEN-LAST:event_jbtAceptarMouseExited
+
+    private void jbtLimpiarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtLimpiarMouseEntered
+        jbtLimpiar.setBackground(new Color (255,86,86));
+    }//GEN-LAST:event_jbtLimpiarMouseEntered
+
+    private void jbtLimpiarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtLimpiarMouseExited
+        jbtLimpiar.setBackground(new Color (255,28,28));
+    }//GEN-LAST:event_jbtLimpiarMouseExited
+
+    private void jtfUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtfUsuarioMousePressed
+        if(jtfUsuario.getText().equals("Ingresar correo electronico")){    
+            jtfUsuario.setText("");
+            jtfUsuario.setForeground(Color.black);
+        }
+        if (String.valueOf(jpfPassword.getPassword()).isEmpty()){
+            jpfPassword.setText("****");
+            jpfPassword.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_jtfUsuarioMousePressed
+
+    private void jpfPasswordMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpfPasswordMousePressed
+        if (jtfUsuario.getText().isEmpty()){
+            jtfUsuario.setText("Ingresar correo electronico");
+            jtfUsuario.setForeground(Color.gray);
+        }
+        if (String.valueOf(jpfPassword.getPassword()).equals("****")){
+            jpfPassword.setText("");
+            jpfPassword.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_jpfPasswordMousePressed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel exitPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbtAceptar;
     private javax.swing.JButton jbtLimpiar;
     private javax.swing.JPasswordField jpfPassword;
