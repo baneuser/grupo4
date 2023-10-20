@@ -1,14 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package main;
 
+// <editor-fold defaultstate="collapsed" desc="import">
 import controlador.LoginController;
-//import controlador.MenuController;
-//import controlador.PerfilController;
 import dao.Conexion;
+import dao.EspecialidadesDAOImpl;
+import java.util.List;
+import model.EspecialidadesModel;
+import model.ProgramacionModel;
 import model.RolModel;
 import model.UsuarioModel;
 import vista.JFCambioPassword;
@@ -21,6 +19,7 @@ import vista.JFMenu;
 import vista.JFPerfil;
 import vista.interfaces.ICambioPassword;
 import vista.interfaces.IEspecialidades;
+// </editor-fold>
 
 /**
  *
@@ -33,6 +32,7 @@ public class Programa {
         // Modelo
         UsuarioModel mUsuario = new UsuarioModel();
         RolModel mRol = new RolModel();
+        ProgramacionModel mProgramacion = new ProgramacionModel();
         
         // Vista
         ILogin vLogin = new JFLogin();
@@ -42,7 +42,7 @@ public class Programa {
         ICambioPassword vCambioPassword = new JFCambioPassword();
         
         // Controladores
-        LoginController cLogin = new LoginController(vLogin, vMenu, vPerfil, vEspecialidades, vCambioPassword, mUsuario, mRol);
+        LoginController cLogin = new LoginController(vLogin, vMenu, vPerfil, vEspecialidades, vCambioPassword, mUsuario, mRol, mProgramacion);
         vLogin.setControlador(cLogin);
         vMenu.setControlador(cLogin);
         vPerfil.setControlador(cLogin);
@@ -52,4 +52,5 @@ public class Programa {
         // Inicia
         vLogin.arranca();
     }
+    
 }

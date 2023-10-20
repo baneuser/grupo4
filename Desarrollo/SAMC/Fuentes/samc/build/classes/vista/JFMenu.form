@@ -17,15 +17,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+            <MenuItem class="javax.swing.JMenuItem" name="jmiHorEsp">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Horario"/>
+                <Property name="text" type="java.lang.String" value="Horario y Especialidades"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jmiEspecialidades">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Especialidades"/>
-              </Properties>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmiCerrarSesion">
               <Properties>

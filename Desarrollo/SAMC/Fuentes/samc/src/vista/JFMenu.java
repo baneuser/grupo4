@@ -24,7 +24,7 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
     public JFMenu() {
         initComponents();
         jmiPerfil.setName(JMI_PERFIL);
-        jmiEspecialidades.setName(JMI_ESPECIALIDADES);
+        jmiHorEsp.setName(JMI_HORESP);
         jmiCerrarSesion.setName(JMI_CERRARSESION);
     }
 
@@ -41,8 +41,8 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jmiEspecialidades = new javax.swing.JMenuItem();
+        jmiHorEsp = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jmiCerrarSesion = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jmiPerfil = new javax.swing.JMenuItem();
@@ -61,11 +61,9 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
         });
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setText("Horario");
-        jMenu1.add(jMenuItem3);
-
-        jmiEspecialidades.setText("Especialidades");
-        jMenu1.add(jmiEspecialidades);
+        jmiHorEsp.setText("Horario y Especialidades");
+        jMenu1.add(jmiHorEsp);
+        jMenu1.add(jSeparator1);
 
         jmiCerrarSesion.setText("Cerrar Sesion");
         jMenu1.add(jmiCerrarSesion);
@@ -105,9 +103,9 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuItem jmiCerrarSesion;
-    private javax.swing.JMenuItem jmiEspecialidades;
+    private javax.swing.JMenuItem jmiHorEsp;
     private javax.swing.JMenuItem jmiPerfil;
     // End of variables declaration//GEN-END:variables
 
@@ -166,7 +164,7 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
     @Override
     public void setControlador(LoginController c) {
         jmiPerfil.addActionListener(c);
-        jmiEspecialidades.addActionListener(c);
+        jmiHorEsp.addActionListener(c);
         jmiCerrarSesion.addActionListener(c);
     }
     
@@ -177,8 +175,8 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
             case JMI_PERFIL:
                 o = jmiPerfil;
                 break;
-            case JMI_ESPECIALIDADES:
-                o = jmiEspecialidades;
+            case JMI_HORESP:
+                o = jmiHorEsp;
                 break;
             case JMI_CERRARSESION:
                 o = jmiCerrarSesion;
