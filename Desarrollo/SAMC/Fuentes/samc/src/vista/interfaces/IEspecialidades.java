@@ -5,16 +5,25 @@
  */
 package vista.interfaces;
 
+//import controlador.JTableController;
 import controlador.LoginController;
+import java.util.ArrayList;
+import utilitarios.Item;
 
 /**
  *
  * @author Usuario
  */
 public interface IEspecialidades extends IPadre {
+//    void setControlador(LoginController c, JTableController c2);
     void setControlador(LoginController c);
     
-    void actualizarTabla(Object[][] data);
+    int getIdEspecialidad();
+    void actualizarEspecialidad(ArrayList<Item> data);
+    void actualizarHorario(ArrayList<String> data);
+//    void actualizarTabla(Object[][] data);
+//    int getIdSeleccionada();
     
     static final String JBT_CERRAR = "JBT_CERRAR";
+    static final String JCB_ESPECIALIDADES = "JCB_ESPECIALIDADES";
 }

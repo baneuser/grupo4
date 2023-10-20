@@ -12,24 +12,25 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import model.EspecialidadesModel;
+import model.ProgramacionModel;
 import model.UsuarioModel;
 
 /**
  *
  * @author Usuario
  */
-public class EspecialidadesDAOImpl implements EspecialidadesDAO {
+public class ProgramacionDAOImpl implements ProgramacionDAO {
 
     @Override
-    public List<EspecialidadesModel> listar() {
-        List<EspecialidadesModel> lista = null;
-        EspecialidadesModel mEspecialidades = null;
+    public List<ProgramacionModel> listar(int idespecialidad) {
+        List<ProgramacionModel> lista = null;
+        ProgramacionModel model = null;
         try {
             Conexion.getInstancia().conectar();
             // Llamar al procedimiento almacenado
-            String sql = "{ CALL centromedico.getEspecialidades() }";
+            String sql = "{ CALL centromedico.getHorarioxEspecialidad(?) }";
             PreparedStatement preparedStatement = Conexion.getInstancia().conexion.prepareStatement(sql);
-//            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, idespecialidad);
 //            preparedStatement.execute();
             
             // Recuperar el resultado en un ResultSet
@@ -40,12 +41,16 @@ public class EspecialidadesDAOImpl implements EspecialidadesDAO {
             lista = new ArrayList<>();
             // Procesar el resultado
             while (resultSet.next()) {
-                mEspecialidades = new EspecialidadesModel();
-                mEspecialidades.setIdCategoria(resultSet.getInt("idespecialidad"));
-                mEspecialidades.setNombre(resultSet.getString("nombre"));
-                mEspecialidades.setCupos_diarios(resultSet.getInt("cupos_diarios"));
-                mEspecialidades.setVeces_semana(resultSet.getInt("veces_semana"));
-                lista.add(mEspecialidades);
+                model = new ProgramacionModel();
+                model.setIdprogramacion(resultSet.getInt("idprogramacion"));
+                model.setFecha(resultSet.getDate("fecha"));
+                model.setHora_inicio(resultSet.getTime("hora_inicio"));
+                model.setHora_fin(resultSet.getTime("hora_fin"));
+                model.setCupos_restantes(resultSet.getInt("cupos_restantes"));
+                model.setFecha_creacion(resultSet.getTimestamp("fecha_creacion"));
+                model.setIdespecialidad(resultSet.getInt("idespecialidad"));
+                
+                lista.add(model);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -55,17 +60,22 @@ public class EspecialidadesDAOImpl implements EspecialidadesDAO {
     }
 
     @Override
-    public EspecialidadesModel leer(int id) {
+    public List<ProgramacionModel> listar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void registrar(EspecialidadesModel t) {
+    public ProgramacionModel leer(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void actualizar(EspecialidadesModel t) {
+    public void registrar(ProgramacionModel t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void actualizar(ProgramacionModel t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -73,5 +83,6 @@ public class EspecialidadesDAOImpl implements EspecialidadesDAO {
     public void eliminar(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 
 }

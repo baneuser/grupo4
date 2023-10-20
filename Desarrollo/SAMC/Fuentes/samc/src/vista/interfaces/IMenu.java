@@ -18,6 +18,6 @@ public interface IMenu extends IPadre {
     static final String TITULO_SISTEMA = "SAMC v1.0 - Plutón SAC / ";
     
     static final String JMI_PERFIL = "JMIPERFIL";
-    static final String JMI_ESPECIALIDADES = "JMIESPECIALIDADES";
+    static final String JMI_HORESP = "JMI_HORESP";
     static final String JMI_CERRARSESION = "JMICERRARSESION";
 }
