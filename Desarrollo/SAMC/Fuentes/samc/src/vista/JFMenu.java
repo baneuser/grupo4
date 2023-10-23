@@ -26,6 +26,7 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
         jmiPerfil.setName(JMI_PERFIL);
         jmiHorEsp.setName(JMI_HORESP);
         jmiCerrarSesion.setName(JMI_CERRARSESION);
+        jmRegistrarPaciente.setName(JMI_REGISTRAR);
     }
 
     /**
@@ -39,7 +40,7 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
 
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        jmRegistrarPaciente = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jmiHorEsp = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
@@ -52,7 +53,7 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/image (1).png"))); // NOI18N
 
-        jMenu1.setText("File");
+        jmRegistrarPaciente.setText("File");
 
         jMenuItem2.setText("Registrar Paciente");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -60,16 +61,16 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jmRegistrarPaciente.add(jMenuItem2);
 
         jmiHorEsp.setText("Horario y Especialidades");
-        jMenu1.add(jmiHorEsp);
-        jMenu1.add(jSeparator1);
+        jmRegistrarPaciente.add(jmiHorEsp);
+        jmRegistrarPaciente.add(jSeparator1);
 
         jmiCerrarSesion.setText("Cerrar Sesion");
-        jMenu1.add(jmiCerrarSesion);
+        jmRegistrarPaciente.add(jmiCerrarSesion);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jmRegistrarPaciente);
 
         jMenu2.setText("Edit");
 
@@ -100,11 +101,11 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JMenu jmRegistrarPaciente;
     private javax.swing.JMenuItem jmiCerrarSesion;
     private javax.swing.JMenuItem jmiHorEsp;
     private javax.swing.JMenuItem jmiPerfil;
@@ -167,6 +168,7 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
         jmiPerfil.addActionListener(c);
         jmiHorEsp.addActionListener(c);
         jmiCerrarSesion.addActionListener(c);
+        jmRegistrarPaciente.addActionListener(c);
     }
     
     @Override
@@ -181,6 +183,9 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
                 break;
             case JMI_CERRARSESION:
                 o = jmiCerrarSesion;
+                break;
+             case JMI_REGISTRAR:
+                o = jmRegistrarPaciente;
                 break;
             default:
                 throw new AssertionError();

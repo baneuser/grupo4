@@ -20,4 +20,6 @@ public interface IMenu extends IPadre {
     static final String JMI_PERFIL = "JMIPERFIL";
     static final String JMI_HORESP = "JMI_HORESP";
     static final String JMI_CERRARSESION = "JMICERRARSESION";
+        static final String JMI_REGISTRAR = "JMI_REGISTRAR";
+
 }

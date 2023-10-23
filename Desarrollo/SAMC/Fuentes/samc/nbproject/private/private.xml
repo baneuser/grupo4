@@ -3,11 +3,32 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/usuario/Documents/NetBeansProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/JFLogin.java</file>
-            <file>file:/C:/Users/usuario/Documents/NetBeansProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/JFPerfil.java</file>
-            <file>file:/C:/Users/usuario/Documents/NetBeansProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/JFRegistrarPaciente.java</file>
-            <file>file:/C:/Users/usuario/Documents/NetBeansProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/JFHorario.java</file>
-            <file>file:/C:/Users/usuario/Documents/NetBeansProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/JFMenu.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/dao/Conexion.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/dao/RolDAO.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/main/Programa.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/dao/UsuarioDAOImpl.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/model/RolModel.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/dao/CRUD.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/dao/EspecialidadesDAOImpl.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/JFRegistrarPaciente.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/controlador/LoginController.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/JFCambioPassword.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/JFLogin.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/dao/EspecialidadesDAO.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/interfaces/IEspecialidades.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/dao/UsuarioDAO.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/interfaces/IPadre.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/interfaces/IPerfil.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/dao/RolDAOImpl.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/interfaces/ILogin.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/JFMenu.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/interfaces/IRegistrarPaciente.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/model/UsuarioModel.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/JFEspecialidades.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/JFPerfil.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/model/EspecialidadesModel.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/interfaces/ICambioPassword.java</file>
+            <file>file:/C:/xampp/htdocs/Proyecto%20Hospital_2/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/interfaces/IMenu.java</file>
         </group>
     </open-files>
 </project-private>

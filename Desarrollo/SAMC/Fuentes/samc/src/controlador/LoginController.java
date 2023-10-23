@@ -97,7 +97,11 @@ public class LoginController implements ActionListener, ItemListener {
             editarPerfil();
         } else if (source == vCambioPassword.getObjeto(ICambioPassword.JBT_ACEPTAR)) {
             cambiarContrasena();
+        } else if(source == vMenu.getObjeto(IMenu.JMI_REGISTRAR)){
+            System.out.println("HOLA");
         }
+            
+        
         
     }
     
