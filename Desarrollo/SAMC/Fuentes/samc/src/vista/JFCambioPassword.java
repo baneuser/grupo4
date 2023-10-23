@@ -11,12 +11,13 @@ import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import vista.interfaces.ICambioPassword;
 
+import java.awt.Color;
 /**
  *
  * @author Usuario
  */
 public class JFCambioPassword extends javax.swing.JFrame implements ICambioPassword {
-
+    int xMouse, yMouse;
     /**
      * Creates new form JFCambioPassword
      */
@@ -25,6 +26,8 @@ public class JFCambioPassword extends javax.swing.JFrame implements ICambioPassw
         jpfActual.setName(JPF_ACTUAL);
         jpfNueva.setName(JPF_NUEVO);
         jbtAceptar.setName(JBT_ACEPTAR);
+        
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel4, "src/img/fondo-saturado.png");
     }
 
     /**
@@ -36,58 +39,120 @@ public class JFCambioPassword extends javax.swing.JFrame implements ICambioPassw
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        exitPanel = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jbtAceptar = new javax.swing.JButton();
         jpfActual = new javax.swing.JPasswordField();
         jpfNueva = new javax.swing.JPasswordField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
+        setUndecorated(true);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        exitPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exitPanel.setOpaque(false);
+        exitPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitPanelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                exitPanelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                exitPanelMouseExited(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("X");
+        exitPanel.add(jLabel11);
+
+        getContentPane().add(exitPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 50, 50));
+
+        jPanel1.setOpaque(false);
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+        });
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 30));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Actual Contraseña");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nueva Contraseña");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
+        jbtAceptar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jbtAceptar.setText("Aceptar");
+        jbtAceptar.setBorder(null);
+        getContentPane().add(jbtAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 320, 30));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jbtAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jpfActual)
-                            .addComponent(jpfNueva, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))))
-                .addContainerGap(23, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jpfActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jpfNueva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbtAceptar)
-                .addContainerGap(26, Short.MAX_VALUE))
-        );
+        jpfActual.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jpfActual.setBorder(null);
+        getContentPane().add(jpfActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 260, 30));
+
+        jpfNueva.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jpfNueva.setBorder(null);
+        getContentPane().add(jpfNueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 260, 30));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 400, 170));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/image (1).png"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 200));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void exitPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitPanelMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_exitPanelMouseClicked
+
+    private void exitPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitPanelMouseEntered
+        exitPanel.setBackground(Color.red);
+        exitPanel.setOpaque(true);
+        exitPanel.setForeground(Color.black);
+    }//GEN-LAST:event_exitPanelMouseEntered
+
+    private void exitPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitPanelMouseExited
+        exitPanel.setBackground(Color.white);
+        exitPanel.setForeground(Color.white);
+        exitPanel.setOpaque(false);
+    }//GEN-LAST:event_exitPanelMouseExited
+
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xMouse,y - yMouse);
+    }//GEN-LAST:event_jPanel1MouseDragged
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_jPanel1MousePressed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel exitPanel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbtAceptar;
     private javax.swing.JPasswordField jpfActual;
     private javax.swing.JPasswordField jpfNueva;

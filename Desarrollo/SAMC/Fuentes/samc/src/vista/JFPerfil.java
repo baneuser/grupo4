@@ -14,12 +14,14 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
+import java.awt.Color;
+
 /**
  *
  * @author Usuario
  */
 public class JFPerfil extends javax.swing.JFrame implements IPerfil {
-
+    int xMouse, yMouse;
     private DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
     /**
      * Creates new form JFPerfil
@@ -39,6 +41,8 @@ public class JFPerfil extends javax.swing.JFrame implements IPerfil {
         jbtCerrar.setName(JBT_CERRAR);
         jbtGuardar.setName(JBT_GUARDAR);
         setSize(503, 352);
+        
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel9, "src/img/fondo-saturado.png");
     }
 
     /**
@@ -50,6 +54,10 @@ public class JFPerfil extends javax.swing.JFrame implements IPerfil {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        exitPanel = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jtfUsuario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -73,8 +81,44 @@ public class JFPerfil extends javax.swing.JFrame implements IPerfil {
         jLabel8 = new javax.swing.JLabel();
 
         setLocationByPlatform(true);
+        setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        exitPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exitPanel.setOpaque(false);
+        exitPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitPanelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                exitPanelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                exitPanelMouseExited(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("X");
+        exitPanel.add(jLabel11);
+
+        getContentPane().add(exitPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 40, 50));
+
+        jPanel1.setOpaque(false);
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+        });
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 30));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, 40, 40));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -83,7 +127,7 @@ public class JFPerfil extends javax.swing.JFrame implements IPerfil {
 
         jtfUsuario.setEditable(false);
         jtfUsuario.setBorder(null);
-        getContentPane().add(jtfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 73, 208, 20));
+        getContentPane().add(jtfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 73, 250, 20));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -91,7 +135,7 @@ public class JFPerfil extends javax.swing.JFrame implements IPerfil {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 109, 90, -1));
 
         jtfNombre.setBorder(null);
-        getContentPane().add(jtfNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 106, 208, 20));
+        getContentPane().add(jtfNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 106, 250, 20));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -99,7 +143,7 @@ public class JFPerfil extends javax.swing.JFrame implements IPerfil {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 149, 90, -1));
 
         jtfApellido.setBorder(null);
-        getContentPane().add(jtfApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 146, 208, 20));
+        getContentPane().add(jtfApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 146, 250, 20));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -107,15 +151,17 @@ public class JFPerfil extends javax.swing.JFrame implements IPerfil {
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 180, 90, -1));
 
         jtfEmail.setBorder(null);
-        getContentPane().add(jtfEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 177, 208, 20));
+        getContentPane().add(jtfEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 177, 250, 20));
 
+        jbtCambiarPassword.setBackground(new java.awt.Color(255, 255, 255));
         jbtCambiarPassword.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jbtCambiarPassword.setText("Cambiar Contraseña");
         jbtCambiarPassword.setBorder(null);
-        getContentPane().add(jbtCambiarPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 72, -1, -1));
+        getContentPane().add(jbtCambiarPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, -1, -1));
 
+        jckbActivo.setBackground(new java.awt.Color(255, 255, 255));
         jckbActivo.setText("Activo");
-        getContentPane().add(jckbActivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 105, -1, -1));
+        getContentPane().add(jckbActivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 60, 40));
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -124,7 +170,7 @@ public class JFPerfil extends javax.swing.JFrame implements IPerfil {
 
         jtfFCreacion.setEditable(false);
         jtfFCreacion.setBorder(null);
-        getContentPane().add(jtfFCreacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 208, 208, 20));
+        getContentPane().add(jtfFCreacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 208, 250, 20));
 
         jlbBienvenida.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jlbBienvenida.setForeground(new java.awt.Color(255, 255, 255));
@@ -135,13 +181,13 @@ public class JFPerfil extends javax.swing.JFrame implements IPerfil {
         jbtGuardar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jbtGuardar.setText("Guardar");
         jbtGuardar.setBorder(null);
-        getContentPane().add(jbtGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 60, 20));
+        getContentPane().add(jbtGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 80, 30));
 
         jbtCerrar.setBackground(new java.awt.Color(102, 204, 255));
         jbtCerrar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jbtCerrar.setText("Cerrar");
         jbtCerrar.setBorder(null);
-        getContentPane().add(jbtCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, 60, 20));
+        getContentPane().add(jbtCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, 80, 30));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -150,7 +196,7 @@ public class JFPerfil extends javax.swing.JFrame implements IPerfil {
 
         jtfFModificacion.setEditable(false);
         jtfFModificacion.setBorder(null);
-        getContentPane().add(jtfFModificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 239, 208, 20));
+        getContentPane().add(jtfFModificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 239, 250, 20));
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -158,19 +204,47 @@ public class JFPerfil extends javax.swing.JFrame implements IPerfil {
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 273, 90, -1));
 
         jcbRol.setBorder(null);
-        getContentPane().add(jcbRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 270, 208, -1));
-
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo.png"))); // NOI18N
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 480, 320));
+        getContentPane().add(jcbRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 270, 250, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 520, 330));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/image (1).png"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 360));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 360));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void exitPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitPanelMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_exitPanelMouseClicked
+
+    private void exitPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitPanelMouseEntered
+        exitPanel.setBackground(Color.red);
+        exitPanel.setOpaque(true);
+        exitPanel.setForeground(Color.black);
+    }//GEN-LAST:event_exitPanelMouseEntered
+
+    private void exitPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitPanelMouseExited
+        exitPanel.setBackground(Color.white);
+        exitPanel.setForeground(Color.white);
+        exitPanel.setOpaque(false);
+    }//GEN-LAST:event_exitPanelMouseExited
+
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xMouse,y - yMouse);
+    }//GEN-LAST:event_jPanel1MouseDragged
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_jPanel1MousePressed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel exitPanel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -179,6 +253,7 @@ public class JFPerfil extends javax.swing.JFrame implements IPerfil {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbtCambiarPassword;
     private javax.swing.JButton jbtCerrar;
     private javax.swing.JButton jbtGuardar;

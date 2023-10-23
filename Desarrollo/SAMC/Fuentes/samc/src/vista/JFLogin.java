@@ -30,6 +30,10 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
         jtfUsuario.setName(JTF_USUARIO);
         jpfPassword.setName(JPF_PASSWORD);
         setSize(854, 480);
+                
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel4, "src/img/fondo-saturado.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel6, "src/img/user-black.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel7, "src/img/lock.png");
     }
 
     /**
@@ -41,6 +45,8 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jtfUsuario = new javax.swing.JTextField();
         jbtAceptar = new javax.swing.JButton();
         jbtLimpiar = new javax.swing.JButton();
@@ -59,8 +65,10 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 30, 30));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 30, 30));
 
-        jtfUsuario.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jtfUsuario.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jtfUsuario.setForeground(new java.awt.Color(153, 153, 153));
         jtfUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jtfUsuario.setText("Ingresar correo electronico");
@@ -70,11 +78,11 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
                 jtfUsuarioMousePressed(evt);
             }
         });
-        getContentPane().add(jtfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 251, 30));
+        getContentPane().add(jtfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 251, 30));
 
-        jbtAceptar.setBackground(new java.awt.Color(102, 204, 255));
-        jbtAceptar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jbtAceptar.setText("Ingresar");
+        jbtAceptar.setBackground(new java.awt.Color(204, 204, 204));
+        jbtAceptar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jbtAceptar.setText("INGRESAR");
         jbtAceptar.setBorder(null);
         jbtAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -84,7 +92,12 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
                 jbtAceptarMouseExited(evt);
             }
         });
-        getContentPane().add(jbtAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 360, 251, 30));
+        jbtAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtAceptarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jbtAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 210, 40));
 
         jbtLimpiar.setBackground(new java.awt.Color(255, 28, 28));
         jbtLimpiar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -99,6 +112,7 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
         });
         getContentPane().add(jbtLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 300, 30, 20));
 
+        jpfPassword.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jpfPassword.setForeground(new java.awt.Color(153, 153, 153));
         jpfPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jpfPassword.setText("****");
@@ -154,12 +168,10 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user-icon-png-pnglogocom-133466 (1) (1).png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 250, 230));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 410, 300));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 470, 300));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/image (1).png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 480));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -196,11 +208,11 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
     }//GEN-LAST:event_exitPanelMouseExited
 
     private void jbtAceptarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtAceptarMouseEntered
-        jbtAceptar.setBackground(new Color(153,220,255));
+        jbtAceptar.setBackground(new Color(237,237,237));
     }//GEN-LAST:event_jbtAceptarMouseEntered
 
     private void jbtAceptarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtAceptarMouseExited
-        jbtAceptar.setBackground(new Color(102,204,255));
+        jbtAceptar.setBackground(new Color(204,204,204));
     }//GEN-LAST:event_jbtAceptarMouseExited
 
     private void jbtLimpiarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtLimpiarMouseEntered
@@ -233,6 +245,10 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
         }
     }//GEN-LAST:event_jpfPasswordMousePressed
 
+    private void jbtAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtAceptarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtAceptarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel exitPanel;
     private javax.swing.JLabel jLabel1;
@@ -240,6 +256,8 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbtAceptar;
     private javax.swing.JButton jbtLimpiar;

@@ -49,7 +49,7 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/rm218batch4-ning-24.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/image (1).png"))); // NOI18N
 
         jMenu1.setText("File");
 
