@@ -30,6 +30,11 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
         jtfUsuario.setName(JTF_USUARIO);
         jpfPassword.setName(JPF_PASSWORD);
         setSize(854, 480);
+        
+        
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel4, "src/img/fondo-saturado.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel6, "src/img/user-black.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel7, "src/img/lock.png");
     }
 
     /**
@@ -42,6 +47,8 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
     private void initComponents() {
 
         jtfUsuario = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jbtAceptar = new javax.swing.JButton();
         jbtLimpiar = new javax.swing.JButton();
         jpfPassword = new javax.swing.JPasswordField();
@@ -70,10 +77,12 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
                 jtfUsuarioMousePressed(evt);
             }
         });
-        getContentPane().add(jtfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 251, 30));
+        getContentPane().add(jtfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 251, 30));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 30, 30));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 30, 30));
 
         jbtAceptar.setBackground(new java.awt.Color(102, 204, 255));
-        jbtAceptar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jbtAceptar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jbtAceptar.setText("Ingresar");
         jbtAceptar.setBorder(null);
         jbtAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -84,7 +93,7 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
                 jbtAceptarMouseExited(evt);
             }
         });
-        getContentPane().add(jbtAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 360, 251, 30));
+        getContentPane().add(jbtAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 370, 230, 40));
 
         jbtLimpiar.setBackground(new java.awt.Color(255, 28, 28));
         jbtLimpiar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -154,12 +163,10 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user-icon-png-pnglogocom-133466 (1) (1).png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 250, 230));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo.png"))); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 410, 300));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/image (1).png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 480));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -240,6 +247,8 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbtAceptar;
     private javax.swing.JButton jbtLimpiar;
