@@ -63,7 +63,7 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
         jtfUsuario.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jtfUsuario.setForeground(new java.awt.Color(153, 153, 153));
         jtfUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtfUsuario.setText("Ingresar correo electronico");
+        jtfUsuario.setText("jrattry2");
         jtfUsuario.setBorder(null);
         jtfUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -101,7 +101,7 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
 
         jpfPassword.setForeground(new java.awt.Color(153, 153, 153));
         jpfPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jpfPassword.setText("****");
+        jpfPassword.setText("Z2z78sJ3b");
         jpfPassword.setBorder(null);
         jpfPassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
