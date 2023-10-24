@@ -26,10 +26,12 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.List;
 import model.EspecialidadesModel;
+import model.PacienteModel;
 import model.ProgramacionModel;
 import model.RolModel;
 import utilitarios.Item;
 import vista.interfaces.ICambioPassword;
+import vista.interfaces.IRegistrarPaciente;
 // </editor-fold>
 
 /**
@@ -50,8 +52,9 @@ public class LoginController implements ActionListener, ItemListener {
     private EspecialidadesDAO daoEspecialidades;
     private RolDAO daoRoles;
     private ProgramacionDAO daoProgramacion;
+    private IRegistrarPaciente vRegistrarPaciente;
 
-    public LoginController(ILogin vista, IMenu vMenu, IPerfil vPerfil, IEspecialidades vEspecialidades, ICambioPassword vCambioPassword, UsuarioModel mUsuario, RolModel mRol, ProgramacionModel mProgramacion) {
+    public LoginController(ILogin vista, IMenu vMenu, IPerfil vPerfil, IEspecialidades vEspecialidades, ICambioPassword vCambioPassword,IRegistrarPaciente vRegistrarPaciente, UsuarioModel mUsuario, RolModel mRol, ProgramacionModel mProgramacion) {
         this.vLogin = vista;
         this.vMenu = vMenu;
         this.vPerfil = vPerfil;
@@ -60,6 +63,7 @@ public class LoginController implements ActionListener, ItemListener {
         this.mUsuario = mUsuario;
         this.mRol = mRol;
         this.mProgramacion = mProgramacion;
+        this.vRegistrarPaciente=vRegistrarPaciente;
         daoUsuario = new UsuarioDAOImpl();
         daoEspecialidades = new EspecialidadesDAOImpl();
         daoRoles = new RolDAOImpl();
@@ -99,10 +103,39 @@ public class LoginController implements ActionListener, ItemListener {
             cambiarContrasena();
         } else if(source == vMenu.getObjeto(IMenu.JMI_REGISTRAR)){
             System.out.println("HOLA");
-        }
-            
+            vRegistrarPaciente.arranca();              
+        } else if(source == vRegistrarPaciente.getObjeto(IRegistrarPaciente.JBT_REGISTRAR)){
+            registrarUsuarios();
+        } else if (source == vRegistrarPaciente.getObjeto(IRegistrarPaciente.JBT_RETROCEDER)){
+            vRegistrarPaciente.ocultar();
+        }        
+    }
+    
+    private void registrarUsuarios() {
+    String nombre = vRegistrarPaciente.getTexto(IRegistrarPaciente.JTF_NOMBRE);
+    String apellido = vRegistrarPaciente.getTexto(IRegistrarPaciente.JTF_APELLIDO);
+    String dni = vRegistrarPaciente.getTexto(IRegistrarPaciente.JFT_DNI);
+    String email = vRegistrarPaciente.getTexto(IRegistrarPaciente.JTF_EMAIL);
+    
+   
+    PacienteModel nuevoUsuario = new PacienteModel();
+    nuevoUsuario.setNombre(nombre);
+    nuevoUsuario.setApellido(apellido);
+    nuevoUsuario.setDni(dni);
+    nuevoUsuario.setEmail(email);
+
+        System.out.println(nombre);
+        System.out.println(apellido);
+        System.out.println(dni);
+
         
-        
+//    if (daoPaciente.insertar(nuevoUsuario)) {
+//        vRegistrarPaciente.mostrarMensaje("Usuario registrado exitosamente.");
+//        vRegistrarPaciente.limpiarTexto();
+//    } else {
+//        vRegistrarPaciente.mostrarMensaje("Error al registrar el usuario. Inténtelo de nuevo.");
+//    }
+
     }
     
     // <editor-fold defaultstate="collapsed" desc="Casos de Uso">

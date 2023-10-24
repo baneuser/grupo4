@@ -5,17 +5,24 @@
  */
 package vista;
 
+import controlador.LoginController;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import vista.interfaces.IRegistrarPaciente;
+
 /**
  *
  * @author Usuario
  */
-public class JFRegistrarPaciente extends javax.swing.JFrame {
+public class JFRegistrarPaciente extends javax.swing.JFrame implements IRegistrarPaciente{
 
     /**
      * Creates new form JFPerfil
      */
     public JFRegistrarPaciente() {
         initComponents();
+        jbtRegistrarPaciente.setName(JBT_REGISTRAR);
+        jbtRetroceder.setName(JBT_RETROCEDER);
     }
 
     /**
@@ -34,19 +41,23 @@ public class JFRegistrarPaciente extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        JFT_DNI = new javax.swing.JTextField();
-        JTF_NOMBRE = new javax.swing.JTextField();
-        JTF_FECHA_NACIMIENTO = new javax.swing.JTextField();
-        JTF_APELLIDO = new javax.swing.JTextField();
+        jbtRegistrarPaciente = new javax.swing.JButton();
+        jbtRetroceder = new javax.swing.JButton();
+        jtfDni = new javax.swing.JTextField();
+        jtfNombre = new javax.swing.JTextField();
+        jtfFechaNacimiento = new javax.swing.JTextField();
+        jtfApellido = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        JTF_EMAIL = new javax.swing.JTextField();
-        JCMB_SEXO = new javax.swing.JComboBox<>();
+        jtfEmail = new javax.swing.JTextField();
+        jbcSexo = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        jtfTelefono = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jtfDireccion = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jtfCodigoAsegurado = new javax.swing.JTextField();
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo.png"))); // NOI18N
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel1.setText("REGISTRAR PACIENTES");
@@ -61,24 +72,30 @@ public class JFRegistrarPaciente extends javax.swing.JFrame {
 
         jLabel6.setText("Sexo:");
 
-        jButton1.setText("Registrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbtRegistrarPaciente.setText("Registrar");
+        jbtRegistrarPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbtRegistrarPacienteActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Retroceder");
+        jbtRetroceder.setText("Retroceder");
 
-        JFT_DNI.addActionListener(new java.awt.event.ActionListener() {
+        jtfDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JFT_DNIActionPerformed(evt);
+                jtfDniActionPerformed(evt);
             }
         });
 
         jLabel7.setText("Email:");
 
-        JCMB_SEXO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
+        jbcSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
+
+        jLabel8.setText("Teléfono:");
+
+        jLabel10.setText("Dirección");
+
+        jLabel11.setText("Código asegurado:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,108 +104,266 @@ public class JFRegistrarPaciente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jbtRegistrarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(12, 12, 12)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(31, 31, 31))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(81, 81, 81)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(JTF_EMAIL)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(JTF_FECHA_NACIMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                            .addComponent(JCMB_SEXO, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(0, 151, Short.MAX_VALUE)
+                                .addComponent(jbtRetroceder, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(JFT_DNI)
-                                    .addComponent(JTF_NOMBRE)
-                                    .addComponent(JTF_APELLIDO, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(672, 672, 672))))
+                                    .addComponent(jtfApellido)
+                                    .addComponent(jtfDni)
+                                    .addComponent(jtfNombre)
+                                    .addComponent(jtfTelefono)
+                                    .addComponent(jtfEmail)
+                                    .addComponent(jtfDireccion)
+                                    .addComponent(jbcSexo, 0, 167, Short.MAX_VALUE)
+                                    .addComponent(jtfFechaNacimiento)
+                                    .addComponent(jtfCodigoAsegurado))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(125, 125, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(JFT_DNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jtfDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(JTF_NOMBRE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(JTF_APELLIDO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(JTF_FECHA_NACIMIENTO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(JCMB_SEXO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbcSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jtfDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(JTF_EMAIL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(174, 174, 174))
+                    .addComponent(jtfCodigoAsegurado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtRegistrarPaciente)
+                    .addComponent(jbtRetroceder))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbtRegistrarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtRegistrarPacienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbtRegistrarPacienteActionPerformed
 
-    private void JFT_DNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JFT_DNIActionPerformed
+    private void jtfDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDniActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_JFT_DNIActionPerformed
+    }//GEN-LAST:event_jtfDniActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> JCMB_SEXO;
-    private javax.swing.JTextField JFT_DNI;
-    private javax.swing.JTextField JTF_APELLIDO;
-    private javax.swing.JTextField JTF_EMAIL;
-    private javax.swing.JTextField JTF_FECHA_NACIMIENTO;
-    private javax.swing.JTextField JTF_NOMBRE;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JComboBox<String> jbcSexo;
+    private javax.swing.JButton jbtRegistrarPaciente;
+    private javax.swing.JButton jbtRetroceder;
+    private javax.swing.JTextField jtfApellido;
+    private javax.swing.JTextField jtfCodigoAsegurado;
+    private javax.swing.JTextField jtfDireccion;
+    private javax.swing.JTextField jtfDni;
+    private javax.swing.JTextField jtfEmail;
+    private javax.swing.JTextField jtfFechaNacimiento;
+    private javax.swing.JTextField jtfNombre;
+    private javax.swing.JTextField jtfTelefono;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setControlador(LoginController c) {
+        jbtRegistrarPaciente.addActionListener(c);
+        jbtRetroceder.addActionListener(c);
+    }
+
+    @Override
+    public void actualizarRoles(String[] data) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void setHabilitar(String obj, boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void arranca() {
+        this.setVisible(true);
+        centrarVentana();
+    }
+    
+    @Override
+    public void ocultar() {
+        this.setVisible(false);
+    }
+    
+    public void centrarVentana() {
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        int anchoVentana = getWidth();
+        int altoVentana = getHeight();
+    
+        int x = (dim.width - anchoVentana) / 2;
+        int y = (dim.height - altoVentana) / 2;
+    
+        setLocation(x, y);
+    }
+
+  
+    @Override
+    public void mostrarPanel(String txt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void limpiarTexto() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void enfocar() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void seleccionarText() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void setTitulo(String txt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    
+     @Override
+    public Object getObjeto(String id) {
+        Object o = null;
+        switch (id) {
+            case JBT_REGISTRAR:
+                o = jbtRegistrarPaciente;
+                break;
+            case JBT_RETROCEDER:
+                o = jbtRetroceder;
+                break;              
+            default:
+                throw new AssertionError();
+        }
+        return o;
+    }
+
+    @Override
+    public void setTexto(String obj, String txt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String getTexto(String obj) {
+        String txt = null;
+        switch (obj) {
+            case JFT_DNI:
+                txt = new String(jtfDni.getText());
+                break;
+            case JTF_NOMBRE:
+                txt = new String(jtfNombre.getText());
+                break;
+            case JTF_APELLIDO:
+                txt = new String(jtfApellido.getText());
+                break;
+            case JTF_EMAIL:
+                txt = new String(jtfEmail.getText());
+                break;
+            case JTF_FECHA_NACIMIENTO:
+                txt = new String(jtfFechaNacimiento.getText());
+                break;
+            case JTF_DIRECCION:
+                txt = new String(jtfDireccion.getText());
+                break;
+            case JTF_TELEFONO:
+                txt = new String(jtfTelefono.getText());
+                break;
+            case JTF_CODIGO_ASEGURADO:
+                txt = new String(jtfCodigoAsegurado.getText());
+                break;
+            case JTF_FECHA_CREACION:
+                txt = new String(jtfFechaCreacion.getText());
+                break;
+            case JTF_FECHA_MODIFICACION:
+                txt = new String(jtfFechaModificacion.getText());
+                break;
+            default:
+                throw new AssertionError();
+        }
+        return txt;
+    }
+    
+    /*
+      static final String JFT_DNI = "JFT_DNI";
+    static final String JTF_NOMBRE = "JTF_NOMBRE";
+    static final String JTF_APELLIDO = "JTF_APELLIDO";
+    static final String JTF_EMAIL = "JTF_EMAIL";
+    static final String JTF_FECHA_NACIMIENTO = "JTF_FECHA_NACIMIENTO";
+    static final String JCMB_SEXO = "JCMB_SEXO";
+    static final String JBT_REGISTRAR = "JBT_REGISTRAR";
+    static final String JBT_RETROCEDER = "JBT_RETROCEDER";
+    static final String JTF_DIRECCION = "JTF_DIRECCION";
+    static final String JTF_TELEFONO = "JTF_TELEFONO";
+    static final String JTF_CODIGO_ASEGURADO = "JTF_CODIGO_ASEGURADO";
+    static final String JTF_FECHA_CREACION = "JTF_FECHA_CREACION";
+    static final String JTF_FECHA_MODIFICACION = "JTF_FECHA_MODIFICACION";
+*/
+    
+    @Override
+    public void limpiarTexto(String obj) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

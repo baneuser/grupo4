@@ -26,7 +26,7 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
         jmiPerfil.setName(JMI_PERFIL);
         jmiHorEsp.setName(JMI_HORESP);
         jmiCerrarSesion.setName(JMI_CERRARSESION);
-        jmRegistrarPaciente.setName(JMI_REGISTRAR);
+        jmiRegistrarPaciente.setName(JMI_REGISTRAR);
     }
 
     /**
@@ -40,8 +40,8 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
 
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jmRegistrarPaciente = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jmFile = new javax.swing.JMenu();
+        jmiRegistrarPaciente = new javax.swing.JMenuItem();
         jmiHorEsp = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jmiCerrarSesion = new javax.swing.JMenuItem();
@@ -53,24 +53,24 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/image (1).png"))); // NOI18N
 
-        jmRegistrarPaciente.setText("File");
+        jmFile.setText("File");
 
-        jMenuItem2.setText("Registrar Paciente");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jmiRegistrarPaciente.setText("Registrar Paciente");
+        jmiRegistrarPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jmiRegistrarPacienteActionPerformed(evt);
             }
         });
-        jmRegistrarPaciente.add(jMenuItem2);
+        jmFile.add(jmiRegistrarPaciente);
 
         jmiHorEsp.setText("Horario y Especialidades");
-        jmRegistrarPaciente.add(jmiHorEsp);
-        jmRegistrarPaciente.add(jSeparator1);
+        jmFile.add(jmiHorEsp);
+        jmFile.add(jSeparator1);
 
         jmiCerrarSesion.setText("Cerrar Sesion");
-        jmRegistrarPaciente.add(jmiCerrarSesion);
+        jmFile.add(jmiCerrarSesion);
 
-        jMenuBar1.add(jmRegistrarPaciente);
+        jMenuBar1.add(jmFile);
 
         jMenu2.setText("Edit");
 
@@ -95,20 +95,20 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jmiRegistrarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRegistrarPacienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_jmiRegistrarPacienteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JMenu jmRegistrarPaciente;
+    private javax.swing.JMenu jmFile;
     private javax.swing.JMenuItem jmiCerrarSesion;
     private javax.swing.JMenuItem jmiHorEsp;
     private javax.swing.JMenuItem jmiPerfil;
+    private javax.swing.JMenuItem jmiRegistrarPaciente;
     // End of variables declaration//GEN-END:variables
 
     // <editor-fold defaultstate="collapsed" desc="IPadre">
@@ -168,7 +168,7 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
         jmiPerfil.addActionListener(c);
         jmiHorEsp.addActionListener(c);
         jmiCerrarSesion.addActionListener(c);
-        jmRegistrarPaciente.addActionListener(c);
+        jmiRegistrarPaciente.addActionListener(c);
     }
     
     @Override
@@ -185,7 +185,7 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
                 o = jmiCerrarSesion;
                 break;
              case JMI_REGISTRAR:
-                o = jmRegistrarPaciente;
+                o = jmiRegistrarPaciente;
                 break;
             default:
                 throw new AssertionError();

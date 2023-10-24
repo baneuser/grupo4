@@ -16,8 +16,6 @@ public interface IRegistrarPaciente extends IPadre {
      static final String MENSAJE_EXITOSO = "Paciente registrado con éxito";
 
     static final String JFT_DNI = "JFT_DNI";
-    static final String JLB_BIENVENIDA = "JLB_BIENVENIDA";
-    static final String JTF_USUARIO = "JTF_USUARIO";
     static final String JTF_NOMBRE = "JTF_NOMBRE";
     static final String JTF_APELLIDO = "JTF_APELLIDO";
     static final String JTF_EMAIL = "JTF_EMAIL";
@@ -25,4 +23,10 @@ public interface IRegistrarPaciente extends IPadre {
     static final String JCMB_SEXO = "JCMB_SEXO";
     static final String JBT_REGISTRAR = "JBT_REGISTRAR";
     static final String JBT_RETROCEDER = "JBT_RETROCEDER";
+    static final String JTF_DIRECCION = "JTF_DIRECCION";
+    static final String JTF_TELEFONO = "JTF_TELEFONO";
+    static final String JTF_CODIGO_ASEGURADO = "JTF_CODIGO_ASEGURADO";
+    static final String JTF_FECHA_CREACION = "JTF_FECHA_CREACION";
+    static final String JTF_FECHA_MODIFICACION = "JTF_FECHA_MODIFICACION";
+
 }
