@@ -17,8 +17,10 @@ import vista.interfaces.IPerfil;
 import vista.JFLogin;
 import vista.JFMenu;
 import vista.JFPerfil;
+import vista.JFRegistrarPaciente;
 import vista.interfaces.ICambioPassword;
 import vista.interfaces.IEspecialidades;
+import vista.interfaces.IRegistrarPaciente;
 // </editor-fold>
 
 /**
@@ -40,14 +42,16 @@ public class Programa {
         IPerfil vPerfil = new JFPerfil();
         IEspecialidades vEspecialidades = new JFEspecialidades();
         ICambioPassword vCambioPassword = new JFCambioPassword();
+        IRegistrarPaciente vIRegistrarPaciente = new JFRegistrarPaciente();
         
         // Controladores
-        LoginController cLogin = new LoginController(vLogin, vMenu, vPerfil, vEspecialidades, vCambioPassword, mUsuario, mRol, mProgramacion);
+        LoginController cLogin = new LoginController(vLogin, vMenu, vPerfil, vEspecialidades, vCambioPassword,vIRegistrarPaciente, mUsuario, mRol, mProgramacion);
         vLogin.setControlador(cLogin);
         vMenu.setControlador(cLogin);
         vPerfil.setControlador(cLogin);
         vEspecialidades.setControlador(cLogin);
         vCambioPassword.setControlador(cLogin);
+        vIRegistrarPaciente.setControlador(cLogin);
         
         // Inicia
         vLogin.arranca();

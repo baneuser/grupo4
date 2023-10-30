@@ -15,6 +15,8 @@ import vista.interfaces.IMenu;
 import vista.interfaces.IPerfil;
 import dao.EspecialidadesDAO;
 import dao.EspecialidadesDAOImpl;
+import dao.PacienteDAO;
+import dao.PacienteDAOImpl;
 import dao.ProgramacionDAO;
 import dao.ProgramacionDAOImpl;
 import dao.RolDAO;
@@ -23,13 +25,19 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.List;
 import model.EspecialidadesModel;
+import model.PacienteModel;
 import model.ProgramacionModel;
 import model.RolModel;
 import utilitarios.Item;
 import vista.interfaces.ICambioPassword;
+import vista.interfaces.IRegistrarPaciente;
+
+ import java.text.ParseException;
+
 // </editor-fold>
 
 /**
@@ -44,14 +52,17 @@ public class LoginController implements ActionListener, ItemListener {
     private IEspecialidades vEspecialidades;
     private ICambioPassword vCambioPassword;
     private UsuarioModel mUsuario;
+    private PacienteModel mPaciente;
     private RolModel mRol;
     private ProgramacionModel mProgramacion;
     private UsuarioDAO daoUsuario;
+    private PacienteDAO daoPaciente;
     private EspecialidadesDAO daoEspecialidades;
     private RolDAO daoRoles;
     private ProgramacionDAO daoProgramacion;
+    private IRegistrarPaciente vRegistrarPaciente;
 
-    public LoginController(ILogin vista, IMenu vMenu, IPerfil vPerfil, IEspecialidades vEspecialidades, ICambioPassword vCambioPassword, UsuarioModel mUsuario, RolModel mRol, ProgramacionModel mProgramacion) {
+    public LoginController(ILogin vista, IMenu vMenu, IPerfil vPerfil, IEspecialidades vEspecialidades, ICambioPassword vCambioPassword,IRegistrarPaciente vRegistrarPaciente, UsuarioModel mUsuario, RolModel mRol, ProgramacionModel mProgramacion) {
         this.vLogin = vista;
         this.vMenu = vMenu;
         this.vPerfil = vPerfil;
@@ -60,10 +71,12 @@ public class LoginController implements ActionListener, ItemListener {
         this.mUsuario = mUsuario;
         this.mRol = mRol;
         this.mProgramacion = mProgramacion;
+        this.vRegistrarPaciente=vRegistrarPaciente;
         daoUsuario = new UsuarioDAOImpl();
         daoEspecialidades = new EspecialidadesDAOImpl();
         daoRoles = new RolDAOImpl();
         daoProgramacion = new ProgramacionDAOImpl();
+        daoPaciente=  new PacienteDAOImpl();
     }
     
     @Override
@@ -97,9 +110,152 @@ public class LoginController implements ActionListener, ItemListener {
             editarPerfil();
         } else if (source == vCambioPassword.getObjeto(ICambioPassword.JBT_ACEPTAR)) {
             cambiarContrasena();
-        }
+        } else if(source == vMenu.getObjeto(IMenu.JMI_REGISTRAR)){
+            System.out.println("HOLA");
+            vRegistrarPaciente.arranca();              
+        } else if(source == vRegistrarPaciente.getObjeto(IRegistrarPaciente.JBT_REGISTRAR)){
+            registrarUsuarios();
+        } 
         
+//        else if (source == vRegistrarPaciente.getObjeto(IRegistrarPaciente.JBT_RETROCEDER)){
+//            vRegistrarPaciente.ocultar();
+//        }        
     }
+    
+    private void registrarUsuarios() {
+    String nombre = vRegistrarPaciente.getTexto(IRegistrarPaciente.JTF_NOMBRE);
+    String apellido = vRegistrarPaciente.getTexto(IRegistrarPaciente.JTF_APELLIDO);
+    String dni = vRegistrarPaciente.getTexto(IRegistrarPaciente.JFT_DNI);
+    String email = vRegistrarPaciente.getTexto(IRegistrarPaciente.JTF_EMAIL);
+    String sexo = vRegistrarPaciente.getTexto(IRegistrarPaciente.JCMB_SEXO);
+    String direccion = vRegistrarPaciente.getTexto(IRegistrarPaciente.JTF_DIRECCION);
+    String telefono = vRegistrarPaciente.getTexto(IRegistrarPaciente.JTF_TELEFONO);
+    String codigoAsegurado = vRegistrarPaciente.getTexto(IRegistrarPaciente.JTF_CODIGO_ASEGURADO);
+    Date fechaNacimiento = new Date (vRegistrarPaciente.getFechaNacimiento().getTime()); 
+    
+        System.out.println(fechaNacimiento); 
+    
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaNacimientoValidar = dateFormat.format(fechaNacimiento);
+    
+    if (nombre.isEmpty()) {
+           vPerfil.mostrarPanel(IRegistrarPaciente.MSJ_CAMPO_VACIO_NOMBRE);
+    } else if (!nombre.matches("^[a-zA-Z]+$")) {
+           vPerfil.mostrarPanel(IRegistrarPaciente.MSJ_3);
+       } else if (apellido.isEmpty()) {
+           vPerfil.mostrarPanel(IRegistrarPaciente.MSJ_CAMPO_VACIO_APELLIDO);
+       } else if (!apellido.matches("^[a-zA-Z]+$")) {
+           vPerfil.mostrarPanel(IRegistrarPaciente.MSJ_4);
+        }  else if (dni.isEmpty()) {
+           vPerfil.mostrarPanel(IRegistrarPaciente.MSJ_CAMPO_VACIO_DNI);
+       } else if (!dni.matches("^[0-9]{8}$")) {
+            vPerfil.mostrarPanel(IRegistrarPaciente.MSJ_5);
+       } else if (fechaNacimientoValidar.isEmpty()) {
+           vPerfil.mostrarPanel(IRegistrarPaciente.MSJ_CAMPO_VACIO_FECHA_NACIMIENTO);
+       } else if (!validarFechaNacimiento(fechaNacimientoValidar)) {
+             vPerfil.mostrarPanel(IRegistrarPaciente.MSJ_6);
+        }else if (email.isEmpty()) {
+           vPerfil.mostrarPanel(IRegistrarPaciente.MSJ_CAMPO_VACIO_EMAIL);
+       }   else if (!validarCorreoElectronico(email)) {
+              vPerfil.mostrarPanel(IRegistrarPaciente.MSJ_7);
+       } else if (direccion.isEmpty()) {
+           vPerfil.mostrarPanel(IRegistrarPaciente.MSJ_CAMPO_VACIO_DIRECCION);
+       } else if (telefono.isEmpty()) {
+           vPerfil.mostrarPanel(IRegistrarPaciente.MSJ_CAMPO_VACIO_TELEFONO);
+       } else if (!telefono.matches("^9\\d{8}$")) {
+             vPerfil.mostrarPanel(IRegistrarPaciente.MSJ_8);
+       }  else if (codigoAsegurado.isEmpty()) {
+           vPerfil.mostrarPanel(IRegistrarPaciente.MSJ_CAMPO_VACIO_CODIGO_ASEGURADO);
+       }  else if (!codigoAsegurado.matches("^[0-9]{10}$")) {
+            vPerfil.mostrarPanel(IRegistrarPaciente.MSJ_9);
+       } else {
+        
+           mPaciente = new PacienteModel();
+           
+       mPaciente.setNombre(nombre);
+       mPaciente.setApellido(apellido); 
+       mPaciente.setDni(dni);
+       mPaciente.setGenero(sexo);
+       mPaciente.setFecha_nacimiento(fechaNacimiento);
+       mPaciente.setEmail(email);
+       mPaciente.setDireccion(direccion);
+       mPaciente.setTelefono(telefono);
+       mPaciente.setCodigo_asegurado(codigoAsegurado);
+       mPaciente.setFecha_creacion(new Timestamp(System.currentTimeMillis()));
+       mPaciente.setFecha_modificacion(null); 
+       
+        System.out.println(nombre);
+        System.out.println(apellido);
+        System.out.println(dni);
+        System.out.println(sexo);
+        System.out.println(fechaNacimiento);
+        System.out.println(email);
+        System.out.println(direccion);
+        System.out.println(telefono);
+        System.out.println(codigoAsegurado);
+        
+        
+        daoPaciente.registrar(mPaciente);
+       vPerfil.mostrarPanel(IRegistrarPaciente.MENSAJE_EXITOSO);
+       vRegistrarPaciente.ocultar();
+       }
+   
+    
+    
+//   PacienteModel nuevoUsuario = new PacienteModel();
+//   nuevoUsuario.setNombre(nombre);
+//   nuevoUsuario.setApellido(apellido);
+//   nuevoUsuario.setDni(dni);
+//   nuevoUsuario.setEmail(email);
+//    nuevoUsuario.setGenero(sexo);
+//   // nuevoUsuario.setFecha_nacimiento(fechaNacimiento);
+//   nuevoUsuario.setDireccion(direccion);
+//    nuevoUsuario.setTelefono(telefono);
+//   nuevoUsuario.setCodigo_asegurado(codigoAsegurado);
+ 
+       // System.out.println(fechaNacimiento);
+
+        
+//    if (daoPaciente.insertar(nuevoUsuario)) {
+//        vRegistrarPaciente.mostrarMensaje("Usuario registrado exitosamente.");
+//        vRegistrarPaciente.limpiarTexto();
+//    } else {
+//        vRegistrarPaciente.mostrarMensaje("Error al registrar el usuario. Inténtelo de nuevo.");
+//    }
+
+    }
+  
+    
+    
+private boolean validarFechaNacimiento(String fechaNacimiento) {
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    dateFormat.setLenient(false);
+
+    try {
+        java.util.Date fecha = dateFormat.parse(fechaNacimiento);
+
+        Calendar calendarioActual = Calendar.getInstance();
+        int anioActual = calendarioActual.get(Calendar.YEAR);
+
+        int anioMinimo = 1923;
+        int anioMaximo = 2023;
+
+        Calendar calendarioFechaNacimiento = Calendar.getInstance();
+        calendarioFechaNacimiento.setTime(fecha);
+        int anioNacimiento = calendarioFechaNacimiento.get(Calendar.YEAR);
+
+        return (anioNacimiento >= anioMinimo && anioNacimiento <= anioMaximo);
+    } catch (ParseException e) {
+        return false; 
+    }
+}
+
+
+        private boolean validarCorreoElectronico(String correoElectronico) {
+        return correoElectronico.matches("^[A-Za-z0-9+_.-]+@(.+)$");
+    }
+
+    
     
     // <editor-fold defaultstate="collapsed" desc="Casos de Uso">
     private void validarUsuario() {

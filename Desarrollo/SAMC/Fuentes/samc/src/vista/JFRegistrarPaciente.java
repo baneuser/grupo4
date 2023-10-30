@@ -5,17 +5,29 @@
  */
 package vista;
 
+import com.toedter.calendar.JDateChooser;
+import controlador.LoginController;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import javax.swing.JTextField;
+import vista.interfaces.IRegistrarPaciente;
+
 /**
  *
  * @author Usuario
  */
-public class JFRegistrarPaciente extends javax.swing.JFrame {
+public class JFRegistrarPaciente extends javax.swing.JFrame implements IRegistrarPaciente{
 
     /**
      * Creates new form JFPerfil
      */
     public JFRegistrarPaciente() {
         initComponents();
+        jbtRegistrarPaciente.setName(JBT_REGISTRAR);
+        jbtRetroceder.setName(JBT_RETROCEDER);
     }
 
     /**
@@ -27,22 +39,371 @@ public class JFRegistrarPaciente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel9 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jbtRegistrarPaciente = new javax.swing.JButton();
+        jbtRetroceder = new javax.swing.JButton();
+        jtfDni = new javax.swing.JTextField();
+        jtfNombre = new javax.swing.JTextField();
+        jtfApellido = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jtfEmail = new javax.swing.JTextField();
+        jbcSexo = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        jtfTelefono = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jtfDireccion = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jtfCodigoAsegurado = new javax.swing.JTextField();
+        jdFecha = new com.toedter.calendar.JDateChooser();
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo.png"))); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        jLabel1.setText("REGISTRAR PACIENTES");
+
+        jLabel2.setText("DNI:");
+
+        jLabel3.setText("Nombre:");
+
+        jLabel4.setText("Apellido:");
+
+        jLabel5.setText("Fecha de nacimiento:");
+
+        jLabel6.setText("Sexo:");
+
+        jbtRegistrarPaciente.setText("Registrar");
+        jbtRegistrarPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtRegistrarPacienteActionPerformed(evt);
+            }
+        });
+
+        jbtRetroceder.setText("Retroceder");
+
+        jtfDni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfDniActionPerformed(evt);
+            }
+        });
+
+        jtfNombre.setText("JUAN");
+
+        jtfApellido.setText("GUERRA");
+
+        jLabel7.setText("Email:");
+
+        jtfEmail.setText("juan123@gmail.com");
+
+        jbcSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
+
+        jLabel8.setText("Teléfono:");
+
+        jtfTelefono.setText("934524123");
+
+        jLabel10.setText("Dirección");
+
+        jtfDireccion.setText("Av. Las Flores 123");
+
+        jLabel11.setText("Código asegurado:");
+
+        jtfCodigoAsegurado.setText("5674563452");
+
+        jdFecha.setDateFormatString("yyyy-MM-dd");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 794, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jbtRegistrarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(125, 125, 125)
+                        .addComponent(jbtRetroceder, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel6)
+                            .addGap(97, 97, 97)
+                            .addComponent(jbcSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jtfDni, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel7)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel10))
+                                .addComponent(jLabel8))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jdFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                                .addComponent(jtfEmail)
+                                .addComponent(jtfDireccion))
+                            .addGap(3, 3, 3))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(79, 79, 79))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(23, 23, 23)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jtfApellido)
+                                .addComponent(jtfNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jtfTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel11)
+                            .addGap(18, 18, 18)
+                            .addComponent(jtfCodigoAsegurado, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 424, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jbcSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(jdFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel5)))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfCodigoAsegurado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtRegistrarPaciente)
+                    .addComponent(jbtRetroceder))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jbtRegistrarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtRegistrarPacienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtRegistrarPacienteActionPerformed
+
+    private void jtfDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDniActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfDniActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JComboBox<String> jbcSexo;
+    private javax.swing.JButton jbtRegistrarPaciente;
+    private javax.swing.JButton jbtRetroceder;
+    private com.toedter.calendar.JDateChooser jdFecha;
+    private javax.swing.JTextField jtfApellido;
+    private javax.swing.JTextField jtfCodigoAsegurado;
+    private javax.swing.JTextField jtfDireccion;
+    private javax.swing.JTextField jtfDni;
+    private javax.swing.JTextField jtfEmail;
+    private javax.swing.JTextField jtfNombre;
+    private javax.swing.JTextField jtfTelefono;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setControlador(LoginController c) {
+        jbtRegistrarPaciente.addActionListener(c);
+        jbtRetroceder.addActionListener(c);
+    }
+
+    @Override
+    public void actualizarRoles(String[] data) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void setHabilitar(String obj, boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void arranca() {
+        this.setVisible(true);
+        centrarVentana();
+    }
+    
+    @Override
+    public void ocultar() {
+        this.setVisible(false);
+    }
+    
+    public void centrarVentana() {
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        int anchoVentana = getWidth();
+        int altoVentana = getHeight();
+    
+        int x = (dim.width - anchoVentana) / 2;
+        int y = (dim.height - altoVentana) / 2;
+    
+        setLocation(x, y);
+    }
+
+  
+    @Override
+    public void mostrarPanel(String txt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void limpiarTexto() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void enfocar() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void seleccionarText() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void setTitulo(String txt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    
+     @Override
+    public Object getObjeto(String id) {
+        Object o = null;
+        switch (id) {
+            case JBT_REGISTRAR:
+                o = jbtRegistrarPaciente;
+                break;
+            case JBT_RETROCEDER:
+                o = jbtRetroceder;
+                break;   
+            default:
+                throw new AssertionError();
+        }
+        return o;
+    }
+
+    @Override
+    public void setTexto(String obj, String txt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    
+    
+    @Override
+    public String getTexto(String obj) {
+        String txt = null;
+        switch (obj) {
+            case JFT_DNI:
+                txt = new String(jtfDni.getText());
+                break;
+            case JTF_NOMBRE:
+                txt = new String(jtfNombre.getText());
+                break;
+            case JTF_APELLIDO:
+                txt = new String(jtfApellido.getText());
+                break;
+            case JTF_EMAIL:
+                txt = new String(jtfEmail.getText());
+                break;
+            case JTF_DIRECCION:
+                txt = new String(jtfDireccion.getText());
+                break;
+            case JTF_TELEFONO:
+                txt = new String(jtfTelefono.getText());
+                break;
+            case JTF_CODIGO_ASEGURADO:
+                txt = new String(jtfCodigoAsegurado.getText());
+                break;   
+             case JCMB_SEXO:
+                txt = (String) jbcSexo.getSelectedItem();
+               break;   
+            default:
+                throw new AssertionError();
+        }
+        return txt;
+    }
+    
+    
+    /*
+      static final String JFT_DNI = "JFT_DNI";
+    static final String JTF_NOMBRE = "JTF_NOMBRE";
+    static final String JTF_APELLIDO = "JTF_APELLIDO";
+    static final String JTF_EMAIL = "JTF_EMAIL";
+    static final String JTF_FECHA_NACIMIENTO = "JTF_FECHA_NACIMIENTO";
+    static final String JCMB_SEXO = "JCMB_SEXO";
+    static final String JBT_REGISTRAR = "JBT_REGISTRAR";
+    static final String JBT_RETROCEDER = "JBT_RETROCEDER";
+    static final String JTF_DIRECCION = "JTF_DIRECCION";
+    static final String JTF_TELEFONO = "JTF_TELEFONO";
+    static final String JTF_CODIGO_ASEGURADO = "JTF_CODIGO_ASEGURADO";
+    static final String JTF_FECHA_CREACION = "JTF_FECHA_CREACION";
+    static final String JTF_FECHA_MODIFICACION = "JTF_FECHA_MODIFICACION";
+*/
+    
+    @Override
+    public void limpiarTexto(String obj) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Date getFechaNacimiento() {
+             Date fechaNacimiento = jdFecha.getDate();             
+       return fechaNacimiento;              
+    }
 }
