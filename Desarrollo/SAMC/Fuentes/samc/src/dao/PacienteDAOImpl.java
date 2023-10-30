@@ -34,13 +34,33 @@ public class PacienteDAOImpl implements PacienteDAO {
 
     @Override
     public void registrar(PacienteModel t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-
+     try {
+            Conexion.getInstancia().conectar();
+            
+            String sql = "CALL centromedico.registrarPaciente(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement stmt = Conexion.getInstancia().conexion.prepareStatement(sql)) {
+                stmt.setString(1, t.getNombre());
+                stmt.setString(2, t.getApellido());
+                stmt.setString(3, t.getDni());
+                stmt.setString(4, t.getGenero());
+                stmt.setDate(5, t.getFecha_nacimiento());
+                stmt.setString(6, t.getEmail());
+                stmt.setString(7, t.getDireccion());
+                stmt.setString(8, t.getTelefono());
+                stmt.setString(9, t.getCodigo_asegurado());
+                stmt.setTimestamp(10, t.getFecha_creacion());
+                stmt.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Exception ->"+ e.getMessage());
+        }
+        
     }
 
     @Override
     public void actualizar(PacienteModel t) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
 
     @Override

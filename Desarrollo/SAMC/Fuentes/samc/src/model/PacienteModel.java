@@ -1,6 +1,7 @@
 
 package model;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 
@@ -12,7 +13,7 @@ public class PacienteModel {
     private String dni;
     private String genero;
     private String email;
-    private Timestamp fecha_nacimiento;
+    private Date fecha_nacimiento;
     private String direccion;
     private String telefono;
     private String codigo_asegurado;
@@ -67,13 +68,14 @@ public class PacienteModel {
         this.email = email;
     }
 
-    public Timestamp getFecha_nacimiento() {
+    public Date getFecha_nacimiento() {
         return fecha_nacimiento;
     }
 
-    public void setFecha_nacimiento(Timestamp fecha_nacimiento) {
+    public void setFecha_nacimiento(Date fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
     }
+
 
     public String getDireccion() {
         return direccion;
@@ -113,6 +115,6 @@ public class PacienteModel {
 
     public void setFecha_modificacion(Timestamp fecha_modificacion) {
         this.fecha_modificacion = fecha_modificacion;
-    }
-        
+    } 
+   
 }

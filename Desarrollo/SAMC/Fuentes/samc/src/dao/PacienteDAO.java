@@ -7,5 +7,5 @@ import model.UsuarioModel;
 
 
 public interface PacienteDAO extends CRUD<PacienteModel>{
-    
+   
 }
