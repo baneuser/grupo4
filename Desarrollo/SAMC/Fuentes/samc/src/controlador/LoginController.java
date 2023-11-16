@@ -1,6 +1,8 @@
 package controlador;
 
 // <editor-fold defaultstate="collapsed" desc="import">
+import dao.CitaDAO;
+import dao.CitaDAOImpl;
 import dao.UsuarioDAO;
 import dao.UsuarioDAOImpl;
 import java.awt.event.ActionEvent;
@@ -23,6 +25,8 @@ import dao.RolDAO;
 import dao.RolDAOImpl;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -37,6 +41,9 @@ import vista.interfaces.ICambioPassword;
 import vista.interfaces.IRegistrarPaciente;
 
  import java.text.ParseException;
+import model.CitaModel;
+import vista.interfaces.IAtenderCita;
+import vista.interfaces.IVerCitas;
 
 // </editor-fold>
 
@@ -44,39 +51,47 @@ import vista.interfaces.IRegistrarPaciente;
  *
  * @author Usuario
  */
-public class LoginController implements ActionListener, ItemListener {
+public class LoginController implements ActionListener, ItemListener, MouseListener {
     
     private ILogin vLogin;
     private IMenu vMenu;
     private IPerfil vPerfil;
     private IEspecialidades vEspecialidades;
     private ICambioPassword vCambioPassword;
+    private IVerCitas vVerCitas;
+    private IAtenderCita vAtenderCita;
     private UsuarioModel mUsuario;
     private PacienteModel mPaciente;
     private RolModel mRol;
     private ProgramacionModel mProgramacion;
+    private CitaModel mCita;
     private UsuarioDAO daoUsuario;
     private PacienteDAO daoPaciente;
     private EspecialidadesDAO daoEspecialidades;
     private RolDAO daoRoles;
     private ProgramacionDAO daoProgramacion;
+    private CitaDAO daoCitas;
     private IRegistrarPaciente vRegistrarPaciente;
 
-    public LoginController(ILogin vista, IMenu vMenu, IPerfil vPerfil, IEspecialidades vEspecialidades, ICambioPassword vCambioPassword,IRegistrarPaciente vRegistrarPaciente, UsuarioModel mUsuario, RolModel mRol, ProgramacionModel mProgramacion) {
+    public LoginController(ILogin vista, IMenu vMenu, IPerfil vPerfil, IEspecialidades vEspecialidades, ICambioPassword vCambioPassword,IRegistrarPaciente vRegistrarPaciente, IVerCitas vVerCitas, IAtenderCita vAtenderCita, UsuarioModel mUsuario, RolModel mRol, ProgramacionModel mProgramacion, CitaModel mCita) {
         this.vLogin = vista;
         this.vMenu = vMenu;
         this.vPerfil = vPerfil;
         this.vEspecialidades = vEspecialidades;
         this.vCambioPassword = vCambioPassword;
+        this.vVerCitas = vVerCitas;
+        this.vAtenderCita = vAtenderCita;
         this.mUsuario = mUsuario;
         this.mRol = mRol;
         this.mProgramacion = mProgramacion;
+        this.mCita = mCita;
         this.vRegistrarPaciente=vRegistrarPaciente;
         daoUsuario = new UsuarioDAOImpl();
         daoEspecialidades = new EspecialidadesDAOImpl();
         daoRoles = new RolDAOImpl();
         daoProgramacion = new ProgramacionDAOImpl();
         daoPaciente=  new PacienteDAOImpl();
+        daoCitas = new CitaDAOImpl();
     }
     
     @Override
@@ -97,6 +112,10 @@ public class LoginController implements ActionListener, ItemListener {
             });
             vEspecialidades.actualizarEspecialidad(dataVista);
             vEspecialidades.arranca();
+        } else if (source == vMenu.getObjeto(IMenu.JMI_CITPRO)) {
+            verCitas();
+        } else if (source == vMenu.getObjeto(IMenu.JMI_ATCIT)) {
+            AtenderCita();
         } else if (source == vEspecialidades.getObjeto(IEspecialidades.JBT_CERRAR)) {
             vEspecialidades.ocultar();
         } else if (source == vMenu.getObjeto(IMenu.JMI_CERRARSESION)) {
@@ -108,6 +127,14 @@ public class LoginController implements ActionListener, ItemListener {
             vPerfil.ocultar();
         } else if (source == vPerfil.getObjeto(IPerfil.JBT_GUARDAR)) {
             editarPerfil();
+        } else if (source == vVerCitas.getObjeto(IVerCitas.JBT_CERRAR)) {
+            vVerCitas.ocultar();
+        } else if (source == vVerCitas.getObjeto(IVerCitas.JBT_BUSCAR)) {
+            buscarCita();
+        } else if (source == vVerCitas.getObjeto(IVerCitas.JBT_LIMPIAR)) {
+            limpiarBusqueda();
+        } else if (source == vVerCitas.getObjeto(IVerCitas.JBT_BUSCARPF)) {
+            buscarCitaPF();
         } else if (source == vCambioPassword.getObjeto(ICambioPassword.JBT_ACEPTAR)) {
             cambiarContrasena();
         } else if(source == vMenu.getObjeto(IMenu.JMI_REGISTRAR)){
@@ -273,6 +300,8 @@ private boolean validarFechaNacimiento(String fechaNacimiento) {
                                 + "Usuario : " + mUsuario.getUsuario().toUpperCase() + " / "
                                 + "Rol: " + mRol.getSiglas()
                         );
+                        if(mRol.getIdrol()==3)
+                            vMenu.verVistaMedico();
 
                         vLogin.ocultar();
                         vMenu.arranca();
@@ -305,8 +334,34 @@ private boolean validarFechaNacimiento(String fechaNacimiento) {
         reiniciarVentanas();
         mUsuario = new UsuarioModel();
         vMenu.setTitulo("");
+        vMenu.ocultarVistaMedico();
         vLogin.arranca();
         vLogin.enfocar();
+    }
+    
+    private void verCitas() {
+        List<CitaModel> lista = daoCitas.getCitasProgramadas();
+        vVerCitas.llenarTabla(lista);
+        vVerCitas.arranca();
+    }
+    
+    private void AtenderCita() {
+        vAtenderCita.arranca();
+    }
+    
+    private void buscarCita() {
+        List<CitaModel> lista = daoCitas.getCitasProgramadas();
+        vVerCitas.buscarTabla(lista);
+    }
+    
+    private void limpiarBusqueda() {
+        List<CitaModel> lista = daoCitas.getCitasProgramadas();
+        vVerCitas.limpiarBusqueda(lista);
+    }
+    
+    private void buscarCitaPF() {
+        List<CitaModel> lista = daoCitas.getCitasProgramadas();
+        vVerCitas.buscarFechaTabla(lista);
     }
     
     private void verPerfil() {
@@ -447,5 +502,34 @@ private boolean validarFechaNacimiento(String fechaNacimiento) {
         String nombreDia = nombresDias[diaDeLaSemana - 1];
         
         return nombreDia;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        Object source = e.getSource();
+        List<CitaModel> lista = daoCitas.getCitasProgramadas();
+        if (source == vVerCitas.getObjeto(IVerCitas.JTB_TABLA)) {
+            vVerCitas.mostrarInfoCita(lista);
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

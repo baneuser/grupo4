@@ -22,6 +22,16 @@
                 <Property name="text" type="java.lang.String" value="Horario y Especialidades"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jmiCitPro">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ver Citas Programadas"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jmiAtCit">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Atender Cita"/>
+              </Properties>
+            </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmiCerrarSesion">
