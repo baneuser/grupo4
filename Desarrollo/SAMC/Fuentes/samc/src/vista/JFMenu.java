@@ -25,7 +25,10 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
         initComponents();
         jmiPerfil.setName(JMI_PERFIL);
         jmiHorEsp.setName(JMI_HORESP);
+        jmiCitPro.setName(JMI_CITPRO);
+        jmiAtCit.setName(JMI_ATCIT);
         jmiCerrarSesion.setName(JMI_CERRARSESION);
+        jmiCitPro.setVisible(false);
         jmiRegistrarPaciente.setName(JMI_REGISTRAR);
     }
 
@@ -43,6 +46,8 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
         jmFile = new javax.swing.JMenu();
         jmiRegistrarPaciente = new javax.swing.JMenuItem();
         jmiHorEsp = new javax.swing.JMenuItem();
+        jmiCitPro = new javax.swing.JMenuItem();
+        jmiAtCit = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jmiCerrarSesion = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -65,6 +70,12 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
 
         jmiHorEsp.setText("Horario y Especialidades");
         jmFile.add(jmiHorEsp);
+
+        jmiCitPro.setText("Ver Citas Programadas");
+        jmFile.add(jmiCitPro);
+
+        jmiAtCit.setText("Atender Cita");
+        jmFile.add(jmiAtCit);
         jmFile.add(jSeparator1);
 
         jmiCerrarSesion.setText("Cerrar Sesion");
@@ -105,7 +116,9 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenu jmFile;
+    private javax.swing.JMenuItem jmiAtCit;
     private javax.swing.JMenuItem jmiCerrarSesion;
+    private javax.swing.JMenuItem jmiCitPro;
     private javax.swing.JMenuItem jmiHorEsp;
     private javax.swing.JMenuItem jmiPerfil;
     private javax.swing.JMenuItem jmiRegistrarPaciente;
@@ -167,6 +180,8 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
     public void setControlador(LoginController c) {
         jmiPerfil.addActionListener(c);
         jmiHorEsp.addActionListener(c);
+        jmiCitPro.addActionListener(c);
+        jmiAtCit.addActionListener(c);
         jmiCerrarSesion.addActionListener(c);
         jmiRegistrarPaciente.addActionListener(c);
     }
@@ -180,6 +195,12 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
                 break;
             case JMI_HORESP:
                 o = jmiHorEsp;
+                break;
+            case JMI_CITPRO:
+                o = jmiCitPro;
+                break;
+            case JMI_ATCIT:
+                o = jmiAtCit;
                 break;
             case JMI_CERRARSESION:
                 o = jmiCerrarSesion;
@@ -205,5 +226,15 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
     @Override
     public String getTexto(String obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void verVistaMedico() {
+        jmiCitPro.setVisible(true);
+    }
+
+    @Override
+    public void ocultarVistaMedico() {
+        jmiCitPro.setVisible(false);
     }
 }

@@ -21,7 +21,7 @@ public class Conexion {
     private final String DB_URL = "jdbc:mysql://localhost:3306/centromedico";
     
     private final String USER = "root";
-    private final String PASS = "unmsm23";
+    private final String PASS = "123crl-20";
     
     private static Conexion obj = null;
     
