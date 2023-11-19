@@ -49,6 +49,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
                 mUsuario.setEmail(resultSet.getString("email"));
                 mUsuario.setPassword(resultSet.getString("password"));
                 mUsuario.setActivo(resultSet.getInt("activo"));
+                mUsuario.setCodigo(resultSet.getString("codigo"));
                 mUsuario.setFecha_creacion(resultSet.getTimestamp("fecha_creacion"));
                 mUsuario.setFecha_modificacion(resultSet.getTimestamp("fecha_modificacion"));
                 mUsuario.setIdRol(resultSet.getInt("idRol"));

@@ -20,6 +20,23 @@ public class UsuarioModel {
     private String email;
     private String password;
     private int activo;
+    private String codigo;
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public int getIdrol() {
+        return idrol;
+    }
+
+    public void setIdrol(int idrol) {
+        this.idrol = idrol;
+    }
     private Timestamp fecha_creacion;
     private Timestamp fecha_modificacion;
     private int idrol;

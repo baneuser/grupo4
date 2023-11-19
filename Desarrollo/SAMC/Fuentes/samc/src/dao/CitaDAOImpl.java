@@ -59,7 +59,28 @@ public class CitaDAOImpl implements CitaDAO{
 
     @Override
     public void registrar(CitaModel t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Conexion.getInstancia().conectar();
+            
+            String sql = "CALL centromedico.registrarCita(?, ?, ?, ?, ?, ?, ?, ?)";
+            try (CallableStatement stmt = Conexion.getInstancia().conexion.prepareCall(sql)) {
+                stmt.setString(1, t.getTitulo());
+                stmt.setString(2, t.getNota());
+                stmt.setTimestamp(3, t.getFecha());
+                stmt.setInt(4, t.getIdmedico());
+                stmt.setInt(5, t.getIdusuario());
+                stmt.setInt(6, t.getIdestado());
+                stmt.setInt(7, t.getNumero_historial());
+                stmt.registerOutParameter(8, Types.INTEGER);
+                stmt.execute();
+                
+                int v_id_cita = stmt.getInt(8);
+                System.out.println("v_id_cita = " + v_id_cita);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Exception ->"+ e.getMessage());
+        }
     }
 
     @Override

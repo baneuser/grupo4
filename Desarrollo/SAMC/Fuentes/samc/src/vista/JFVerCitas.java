@@ -65,7 +65,6 @@ public class JFVerCitas extends javax.swing.JFrame implements IVerCitas{
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -119,9 +118,6 @@ public class JFVerCitas extends javax.swing.JFrame implements IVerCitas{
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/image (1).png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 430));
 
-        jTextField1.setText("jTextField1");
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, -1, -1));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -140,7 +136,6 @@ public class JFVerCitas extends javax.swing.JFrame implements IVerCitas{
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton jbtBuscar;
     private javax.swing.JButton jbtBuscarPF;
     private javax.swing.JButton jbtCerrar;

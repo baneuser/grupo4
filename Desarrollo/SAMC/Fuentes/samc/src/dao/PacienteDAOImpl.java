@@ -68,5 +68,81 @@ public class PacienteDAOImpl implements PacienteDAO {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    
+    @Override
+    public PacienteModel getPacientexDNI(String dni) {
+        PacienteModel mPaciente = null;
+        try {
+            Conexion.getInstancia().conectar();
+            // Llamar al procedimiento almacenado
+            String sql = "{ CALL centromedico.getPacientexDNI(?) }";
+            PreparedStatement preparedStatement = Conexion.getInstancia().conexion.prepareStatement(sql);
+            preparedStatement.setString(1, dni);
+//            preparedStatement.execute();
+            
+            // Recuperar el resultado en un ResultSet
+//            ResultSet resultSet = callableStatement.getResultSet();
+            ResultSet resultSet = preparedStatement.executeQuery();
+//            boolean encontrado = resultSet.first();
+            
+            mPaciente = new PacienteModel();
+            // Procesar el resultado
+            while (resultSet.next()) {
+                mPaciente.setIdPaciente(resultSet.getInt("idPaciente"));
+                mPaciente.setNombre(resultSet.getString("nombre"));
+                mPaciente.setApellido(resultSet.getString("apellido"));
+                mPaciente.setDni(resultSet.getString("dni"));
+                mPaciente.setGenero(resultSet.getString("genero"));
+                mPaciente.setFecha_nacimiento(resultSet.getDate("fecha_nacimiento"));
+                mPaciente.setEmail(resultSet.getString("email"));
+                mPaciente.setDireccion(resultSet.getString("direccion"));
+                mPaciente.setTelefono(resultSet.getString("telefono"));
+                mPaciente.setCodigo_asegurado(resultSet.getString("codigo_asegurado"));
+                mPaciente.setFecha_creacion(resultSet.getTimestamp("fecha_creacion"));
+                mPaciente.setFecha_modificacion(resultSet.getTimestamp("fecha_modificacion"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Exception ->"+ e.getMessage());
+        }
+        return mPaciente;
+    }
+
+    @Override
+    public PacienteModel getPacientexCodigoAsegurado(String codigo) {
+        PacienteModel mPaciente = null;
+        try {
+            Conexion.getInstancia().conectar();
+            // Llamar al procedimiento almacenado
+            String sql = "{ CALL centromedico.getPacientexCodigo(?) }";
+            PreparedStatement preparedStatement = Conexion.getInstancia().conexion.prepareStatement(sql);
+            preparedStatement.setString(1, codigo);
+//            preparedStatement.execute();
+            
+            // Recuperar el resultado en un ResultSet
+//            ResultSet resultSet = callableStatement.getResultSet();
+            ResultSet resultSet = preparedStatement.executeQuery();
+//            boolean encontrado = resultSet.first();
+            
+            mPaciente = new PacienteModel();
+            // Procesar el resultado
+            while (resultSet.next()) {
+                mPaciente.setIdPaciente(resultSet.getInt("idPaciente"));
+                mPaciente.setNombre(resultSet.getString("nombre"));
+                mPaciente.setApellido(resultSet.getString("apellido"));
+                mPaciente.setDni(resultSet.getString("dni"));
+                mPaciente.setGenero(resultSet.getString("genero"));
+                mPaciente.setFecha_nacimiento(resultSet.getDate("fecha_nacimiento"));
+                mPaciente.setEmail(resultSet.getString("email"));
+                mPaciente.setDireccion(resultSet.getString("direccion"));
+                mPaciente.setTelefono(resultSet.getString("telefono"));
+                mPaciente.setCodigo_asegurado(resultSet.getString("codigo_asegurado"));
+                mPaciente.setFecha_creacion(resultSet.getTimestamp("fecha_creacion"));
+                mPaciente.setFecha_modificacion(resultSet.getTimestamp("fecha_modificacion"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Exception ->"+ e.getMessage());
+        }
+        return mPaciente;
+    }
 }

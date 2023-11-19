@@ -10,6 +10,8 @@ import model.ProgramacionModel;
 import model.RolModel;
 import model.UsuarioModel;
 import model.CitaModel;
+import model.HistorialModel;
+import model.MedicoModel;
 import vista.JFAtenderCita;
 import vista.JFCambioPassword;
 import vista.JFEspecialidades;
@@ -20,11 +22,13 @@ import vista.JFLogin;
 import vista.JFMenu;
 import vista.JFPerfil;
 import vista.JFRegistrarPaciente;
+import vista.JFReservarCita;
 import vista.JFVerCitas;
 import vista.interfaces.IAtenderCita;
 import vista.interfaces.ICambioPassword;
 import vista.interfaces.IEspecialidades;
 import vista.interfaces.IRegistrarPaciente;
+import vista.interfaces.IReservarCita;
 import vista.interfaces.IVerCitas;
 // </editor-fold>
 
@@ -41,6 +45,8 @@ public class Programa {
         RolModel mRol = new RolModel();
         ProgramacionModel mProgramacion = new ProgramacionModel();
         CitaModel mCita = new CitaModel();
+        HistorialModel mHistorial = new HistorialModel();
+        MedicoModel mMedico = new MedicoModel();
         
         // Vista
         ILogin vLogin = new JFLogin();
@@ -51,9 +57,10 @@ public class Programa {
         IRegistrarPaciente vIRegistrarPaciente = new JFRegistrarPaciente();
         IVerCitas vVerCitas = new JFVerCitas();
         IAtenderCita vAtenderCita = new JFAtenderCita();
+        IReservarCita vReservarCita = new JFReservarCita();
         
         // Controladores
-        LoginController cLogin = new LoginController(vLogin, vMenu, vPerfil, vEspecialidades, vCambioPassword,vIRegistrarPaciente, vVerCitas, vAtenderCita, mUsuario, mRol, mProgramacion, mCita);
+        LoginController cLogin = new LoginController(vLogin, vMenu, vPerfil, vEspecialidades, vCambioPassword,vIRegistrarPaciente, vVerCitas, vAtenderCita, vReservarCita, mUsuario, mRol, mProgramacion, mCita, mHistorial, mMedico);
         vLogin.setControlador(cLogin);
         vMenu.setControlador(cLogin);
         vPerfil.setControlador(cLogin);
@@ -62,6 +69,7 @@ public class Programa {
         vIRegistrarPaciente.setControlador(cLogin);
         vVerCitas.setControlador(cLogin);
         vAtenderCita.setControlador(cLogin);
+        vReservarCita.setController(cLogin);
         
         // Inicia
         vLogin.arranca();
