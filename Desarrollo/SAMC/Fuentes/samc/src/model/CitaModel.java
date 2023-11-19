@@ -25,7 +25,15 @@ public class CitaModel {
     private int idusuario;
     private int idestado;
     private int numero_historial;
-    
+
+    public int getIdmedico() {
+        return idmedico;
+    }
+
+    public void setIdmedico(int idmedico) {
+        this.idmedico = idmedico;
+    }
+
     public void setIdcita(int idcita) {
         this.idcita = idcita;
     }
@@ -40,10 +48,6 @@ public class CitaModel {
 
     public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
-    }
-
-    public void setIdmedico(int idmedico) {
-        this.idmedico = idmedico;
     }
 
     public void setFecha_creacion(Timestamp fecha_creacion) {
@@ -76,10 +80,6 @@ public class CitaModel {
 
     public Timestamp getFecha() {
         return fecha;
-    }
-
-    public int getIdmedico() {
-        return idmedico;
     }
 
     public Timestamp getFecha_creacion() {

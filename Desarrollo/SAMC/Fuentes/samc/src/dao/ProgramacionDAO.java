@@ -15,4 +15,6 @@ import model.ProgramacionModel;
  */
 public interface ProgramacionDAO extends CRUD<ProgramacionModel>{
     List<ProgramacionModel> listar(int idespecialidad);
+    List<ProgramacionModel> listarDisponibles(int idespecialidad);
+    int reservaCupo(int idprogramacion);
 }

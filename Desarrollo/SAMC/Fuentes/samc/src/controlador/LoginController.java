@@ -17,6 +17,10 @@ import vista.interfaces.IMenu;
 import vista.interfaces.IPerfil;
 import dao.EspecialidadesDAO;
 import dao.EspecialidadesDAOImpl;
+import dao.HistorialDAO;
+import dao.HistorialDAOImpl;
+import dao.MedicoDAO;
+import dao.MedicoDAOImpl;
 import dao.PacienteDAO;
 import dao.PacienteDAOImpl;
 import dao.ProgramacionDAO;
@@ -41,8 +45,13 @@ import vista.interfaces.ICambioPassword;
 import vista.interfaces.IRegistrarPaciente;
 
  import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.CitaModel;
+import model.HistorialModel;
+import model.MedicoModel;
 import vista.interfaces.IAtenderCita;
+import vista.interfaces.IReservarCita;
 import vista.interfaces.IVerCitas;
 
 // </editor-fold>
@@ -65,15 +74,20 @@ public class LoginController implements ActionListener, ItemListener, MouseListe
     private RolModel mRol;
     private ProgramacionModel mProgramacion;
     private CitaModel mCita;
+    private HistorialModel mHistorial;
+    private MedicoModel mMedico;
     private UsuarioDAO daoUsuario;
     private PacienteDAO daoPaciente;
     private EspecialidadesDAO daoEspecialidades;
     private RolDAO daoRoles;
     private ProgramacionDAO daoProgramacion;
     private CitaDAO daoCitas;
+    private HistorialDAO daoHistorial;
+    private MedicoDAO daoMedico;
     private IRegistrarPaciente vRegistrarPaciente;
+    private IReservarCita vReservarCita;
 
-    public LoginController(ILogin vista, IMenu vMenu, IPerfil vPerfil, IEspecialidades vEspecialidades, ICambioPassword vCambioPassword,IRegistrarPaciente vRegistrarPaciente, IVerCitas vVerCitas, IAtenderCita vAtenderCita, UsuarioModel mUsuario, RolModel mRol, ProgramacionModel mProgramacion, CitaModel mCita) {
+    public LoginController(ILogin vista, IMenu vMenu, IPerfil vPerfil, IEspecialidades vEspecialidades, ICambioPassword vCambioPassword,IRegistrarPaciente vRegistrarPaciente, IVerCitas vVerCitas, IAtenderCita vAtenderCita, IReservarCita vReservarCita, UsuarioModel mUsuario, RolModel mRol, ProgramacionModel mProgramacion, CitaModel mCita, HistorialModel mHistorial, MedicoModel mMedico) {
         this.vLogin = vista;
         this.vMenu = vMenu;
         this.vPerfil = vPerfil;
@@ -85,13 +99,18 @@ public class LoginController implements ActionListener, ItemListener, MouseListe
         this.mRol = mRol;
         this.mProgramacion = mProgramacion;
         this.mCita = mCita;
+        this.mHistorial = mHistorial;
+        this.mMedico = mMedico;
         this.vRegistrarPaciente=vRegistrarPaciente;
+        this.vReservarCita = vReservarCita;
         daoUsuario = new UsuarioDAOImpl();
         daoEspecialidades = new EspecialidadesDAOImpl();
         daoRoles = new RolDAOImpl();
         daoProgramacion = new ProgramacionDAOImpl();
         daoPaciente=  new PacienteDAOImpl();
         daoCitas = new CitaDAOImpl();
+        daoHistorial = new HistorialDAOImpl();
+        daoMedico = new MedicoDAOImpl();
     }
     
     @Override
@@ -114,6 +133,8 @@ public class LoginController implements ActionListener, ItemListener, MouseListe
             vEspecialidades.arranca();
         } else if (source == vMenu.getObjeto(IMenu.JMI_CITPRO)) {
             verCitas();
+        } else if (source == vMenu.getObjeto(IMenu.JMI_RESERVARCITA)) {
+            abrirVentanaReservarCita();
         } else if (source == vMenu.getObjeto(IMenu.JMI_ATCIT)) {
             AtenderCita();
         } else if (source == vEspecialidades.getObjeto(IEspecialidades.JBT_CERRAR)) {
@@ -129,6 +150,8 @@ public class LoginController implements ActionListener, ItemListener, MouseListe
             editarPerfil();
         } else if (source == vVerCitas.getObjeto(IVerCitas.JBT_CERRAR)) {
             vVerCitas.ocultar();
+        } else if (source == vReservarCita.getObjeto(IReservarCita.JBT_CERRAR)) {
+            vReservarCita.ocultar();
         } else if (source == vVerCitas.getObjeto(IVerCitas.JBT_BUSCAR)) {
             buscarCita();
         } else if (source == vVerCitas.getObjeto(IVerCitas.JBT_LIMPIAR)) {
@@ -138,8 +161,58 @@ public class LoginController implements ActionListener, ItemListener, MouseListe
         } else if (source == vCambioPassword.getObjeto(ICambioPassword.JBT_ACEPTAR)) {
             cambiarContrasena();
         } else if(source == vMenu.getObjeto(IMenu.JMI_REGISTRAR)){
-            System.out.println("HOLA");
             vRegistrarPaciente.arranca();              
+        } else if(source == vReservarCita.getObjeto(IReservarCita.JBT_RESERVAR)){
+            int idespecialidad = vReservarCita.getIdEspecialidadSeleccionada();
+            int idprogramacion = vReservarCita.getHorario();
+            String nota = vReservarCita.getTexto(IReservarCita.JTF_NOTA);
+            String sintomas = vReservarCita.getTexto(IReservarCita.JTF_SINTOMAS);
+            int idmedico = vReservarCita.getIdMedicoSeleccionada();
+            if (idespecialidad != 0 && idprogramacion != 0) {
+                if (!sintomas.isEmpty()) {
+                    mProgramacion = daoProgramacion.leer(idprogramacion);
+                    mHistorial.setIdpaciente(mPaciente.getIdPaciente());
+                    mHistorial.setFecha(mProgramacion.getFecha());
+                    mHistorial.setSintomas(sintomas);
+                    mHistorial.setAnalisis("");
+                    daoHistorial.registrar(mHistorial);
+                    
+                    mCita.setTitulo("Especialidad: " + vReservarCita.getEspecialidadSeleccionada());
+                    mCita.setNota(nota);
+                    
+                    mProgramacion = daoProgramacion.leer(vReservarCita.getIdEspecialidadSeleccionada());
+                    String stringFecha = mProgramacion.getFecha().toString() + " " + mProgramacion.getHora_inicio();
+                    System.out.println("stringFecha = " + stringFecha);
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // Formato de tu String
+                    java.util.Date fechaUtil = null;
+                    try {
+                        fechaUtil = sdf.parse(stringFecha); // Parsing del String a java.util.Date
+                    } catch (ParseException ex) {
+                        Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Timestamp timestamp = new Timestamp(fechaUtil.getTime()); // Crear Timestamp a partir de java.util.Date
+                    System.out.println("fechaUtil = " + fechaUtil);
+                    System.out.println("fechaUtil.getTime() = " + fechaUtil.getTime());
+                    mCita.setFecha(timestamp);
+                    mCita.setIdmedico(idmedico);
+                    mCita.setIdusuario(mUsuario.getId());
+                    mCita.setIdestado(1);
+                    mCita.setNumero_historial(mHistorial.getNumero_historial());
+                    daoCitas.registrar(mCita);
+                    
+                    int resultado = daoProgramacion.reservaCupo(idprogramacion);
+                    
+                    if (resultado == 0) {
+                        actualizarHorarioReservaCita();
+                        cerrarVentanaReservaCita();
+                        vReservarCita.mostrarPanel(IReservarCita.MSJ_RESERVA_EXITOSA);
+                    }
+                } else {
+                    vReservarCita.mostrarPanel(IReservarCita.MSJ_CAMPO_VACIO);
+                }
+            } else {
+                vReservarCita.mostrarPanel(IReservarCita.MSJ_SELECCIONAR);
+            }
         } else if(source == vRegistrarPaciente.getObjeto(IRegistrarPaciente.JBT_REGISTRAR)){
             registrarUsuarios();
         } 
@@ -147,6 +220,25 @@ public class LoginController implements ActionListener, ItemListener, MouseListe
 //        else if (source == vRegistrarPaciente.getObjeto(IRegistrarPaciente.JBT_RETROCEDER)){
 //            vRegistrarPaciente.ocultar();
 //        }        
+    }
+    
+    private void cerrarVentanaReservaCita() {
+        vReservarCita.seleccionarxDefectoOpcionEspecialidad();
+        vReservarCita.setTexto(IReservarCita.JTF_NOTA, "");
+        vReservarCita.setTexto(IReservarCita.JTF_SINTOMAS, "");
+        vReservarCita.ocultar();
+    }
+    
+    private void abrirVentanaReservarCita() {
+        ArrayList<Item> dataVista = new ArrayList<>();
+        dataVista.add(new Item(0, "Seleccionar"));
+        daoEspecialidades.listar().forEach((listaEsp) -> {
+            dataVista.add(new Item(listaEsp.getIdCategoria(), listaEsp.getNombre()));
+        });
+        vReservarCita.actualizarEspecialidad(dataVista);
+        mPaciente = daoPaciente.getPacientexCodigoAsegurado(mUsuario.getCodigo());
+        vReservarCita.setTexto(IReservarCita.JTF_PACIENTE, mPaciente.getNombre() + " " + mPaciente.getApellido());
+        vReservarCita.arranca();
     }
     
     private void registrarUsuarios() {
@@ -300,9 +392,12 @@ private boolean validarFechaNacimiento(String fechaNacimiento) {
                                 + "Usuario : " + mUsuario.getUsuario().toUpperCase() + " / "
                                 + "Rol: " + mRol.getSiglas()
                         );
-                        if(mRol.getIdrol()==3)
+                        if(mRol.getIdrol()==3) // ROL MEDICO
                             vMenu.verVistaMedico();
-
+                        
+                        if(mRol.getIdrol()==2) // ROL PACIENTE
+                            vMenu.verVistaPaciente();
+                        
                         vLogin.ocultar();
                         vMenu.arranca();
                     } else if (mUsuario.getActivo() == 0) {
@@ -335,6 +430,7 @@ private boolean validarFechaNacimiento(String fechaNacimiento) {
         mUsuario = new UsuarioModel();
         vMenu.setTitulo("");
         vMenu.ocultarVistaMedico();
+        vMenu.ocultarVistaPaciente();
         vLogin.arranca();
         vLogin.enfocar();
     }
@@ -464,13 +560,19 @@ private boolean validarFechaNacimiento(String fechaNacimiento) {
         Object source = e.getSource();
         if (source == vEspecialidades.getObjeto(IEspecialidades.JCB_ESPECIALIDADES)) {
             if (e.getStateChange() == ItemEvent.SELECTED) {
-                System.out.println("getIdEspecialidad: " + vEspecialidades.getIdEspecialidad());
-                actualizarHorario();
+                System.out.println("vEspecialidades.getIdEspecialidad: " + vEspecialidades.getIdEspecialidad());
+                actualizarHorarioEspecialidad();
+            }
+        } else if (source == vReservarCita.getObjeto(IReservarCita.JCB_ESPECIALIDADES)) {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                System.out.println("vReservarCita.getIdEspecialidad: " + vReservarCita.getIdEspecialidadSeleccionada());
+                actualizarHorarioReservaCita();
+                actualizarMedicoReservaCita();
             }
         }
     }
     
-    private void actualizarHorario() {
+    private void actualizarHorarioEspecialidad() {
         ArrayList<String> data = new ArrayList<>();
         List<ProgramacionModel> lista = daoProgramacion.listar(vEspecialidades.getIdEspecialidad());
         String estado = "";
@@ -486,6 +588,30 @@ private boolean validarFechaNacimiento(String fechaNacimiento) {
             data.add("[NO PROGRAMADO]");
         }
         vEspecialidades.actualizarHorario(data);
+    }
+    
+    private void actualizarHorarioReservaCita() {
+        List<ProgramacionModel> lista = daoProgramacion.listarDisponibles(vReservarCita.getIdEspecialidadSeleccionada());
+        ArrayList<Item> dataVista = new ArrayList<>();
+        dataVista.add(new Item(0, "Seleccionar"));
+        lista.forEach((listaProgra) -> {
+            dataVista.add(new Item(listaProgra.getIdprogramacion(), 
+                    listaProgra.getFecha().toString() + " " + listaProgra.getHora_inicio()  + " (CUPOS:" + listaProgra.getCupos_restantes() + ")"));
+        });
+        vReservarCita.actualizarHorario(dataVista);
+    }
+    
+    private void actualizarMedicoReservaCita() {
+        List<MedicoModel> lista = daoMedico.getMedicoxEspecialidad(vReservarCita.getIdEspecialidadSeleccionada());
+        ArrayList<Item> dataVista = new ArrayList<>();
+//        dataVista.add(new Item(0, "Seleccionar"));
+        lista.forEach((listaMedico) -> {
+            dataVista.add(new Item(
+                listaMedico.getIdmedico(), 
+                listaMedico.getNombre() + " " + listaMedico.getApellido())
+            );
+        });
+        vReservarCita.actualizarMedico(dataVista);
     }
     
     private String obtenerDiaDeSemana(Date fecha) {

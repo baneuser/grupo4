@@ -17,6 +17,11 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiRegistrarPacienteActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jmiReservarCita">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Reservar Cita"/>
+              </Properties>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmiHorEsp">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Horario y Especialidades"/>
