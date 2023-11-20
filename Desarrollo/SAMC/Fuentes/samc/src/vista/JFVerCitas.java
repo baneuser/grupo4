@@ -27,7 +27,7 @@ public class JFVerCitas extends javax.swing.JFrame implements IVerCitas{
      */
     DefaultTableModel miModelo;
     CitaModel datos;
-    String[] cabecera={"ID","Titulo","Fecha","Creado por"};
+    String[] cabecera={"IDCita","ID","Titulo","Fecha","Creado por"};
     String[][] data={};
     
     public JFVerCitas() {
@@ -37,11 +37,13 @@ public class JFVerCitas extends javax.swing.JFrame implements IVerCitas{
         jbtCerrar.setName(JBT_CERRAR);
         jbtLimpiar.setName(JBT_LIMPIAR);
         jbtBuscarPF.setName(JBT_BUSCARPF);
-        miModelo=new DefaultTableModel(data,cabecera);
-        
+        jbtAtCita.setName(JBT_ATCITA);
+        miModelo=new DefaultTableModel(data,cabecera);    
         tblCitas.setModel(miModelo);
-        
-
+        tblCitas.getColumnModel().getColumn(1).setPreferredWidth(5);
+        tblCitas.getColumnModel().getColumn(0).setMinWidth(0);
+        tblCitas.getColumnModel().getColumn(0).setMaxWidth(0);
+        jbtAtCita.setEnabled(false);
     }
 
     /**
@@ -57,6 +59,7 @@ public class JFVerCitas extends javax.swing.JFrame implements IVerCitas{
         tblCitas = new javax.swing.JTable();
         jdcFecha = new com.toedter.calendar.JDateChooser();
         jtfCita = new javax.swing.JTextField();
+        jbtAtCita = new javax.swing.JButton();
         jbtBuscarPF = new javax.swing.JButton();
         jbtLimpiar = new javax.swing.JButton();
         jbtBuscar = new javax.swing.JButton();
@@ -68,15 +71,22 @@ public class JFVerCitas extends javax.swing.JFrame implements IVerCitas{
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tblCitas = new javax.swing.JTable()
+        {
+            public boolean isCellEditable(int row, int column)
+            {
+                return false;
+            }
+        };
         tblCitas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
         ));
         tblCitas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -89,6 +99,9 @@ public class JFVerCitas extends javax.swing.JFrame implements IVerCitas{
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 510, 190));
         getContentPane().add(jdcFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, -1, -1));
         getContentPane().add(jtfCita, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 270, -1));
+
+        jbtAtCita.setText("Atender cita");
+        getContentPane().add(jbtAtCita, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 370, 130, -1));
 
         jbtBuscarPF.setText("Buscar por fecha");
         getContentPane().add(jbtBuscarPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 130, -1, -1));
@@ -145,6 +158,7 @@ public class JFVerCitas extends javax.swing.JFrame implements IVerCitas{
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbtAtCita;
     private javax.swing.JButton jbtBuscar;
     private javax.swing.JButton jbtBuscarPF;
     private javax.swing.JButton jbtCerrar;
@@ -160,6 +174,7 @@ public class JFVerCitas extends javax.swing.JFrame implements IVerCitas{
         jbtCerrar.addActionListener(c);
         jbtLimpiar.addActionListener(c);
         jbtBuscarPF.addActionListener(c);
+        jbtAtCita.addActionListener(c);
         tblCitas.addMouseListener(c);
     }
 
@@ -230,6 +245,9 @@ public class JFVerCitas extends javax.swing.JFrame implements IVerCitas{
             case JTB_TABLA:
                 o = tblCitas;
                 break;
+            case JBT_ATCITA:
+                o = jbtAtCita;
+                break;
             default:
                 throw new AssertionError();
         }
@@ -253,16 +271,19 @@ public class JFVerCitas extends javax.swing.JFrame implements IVerCitas{
 
     @Override
     public void llenarTabla(List<CitaModel> data) {
+        while(miModelo.getRowCount()>0)miModelo.removeRow(0);
         String titulo, user;
-        int id;
+        int id, count=1, idcita;
         Timestamp fecha;
         for(CitaModel citaModel : data){
-            id=citaModel.getIdcita();
+            idcita=citaModel.getIdcita();
+            id=count;
             titulo=citaModel.getTitulo();
             fecha=citaModel.getFecha();
             user=citaModel.getNombre_usuario();
-            Object[] fila={id,titulo,fecha,user};
+            Object[] fila={idcita,id,titulo,fecha,user};
             miModelo.addRow(fila);
+            count++;
         }
     }
 
@@ -272,22 +293,25 @@ public class JFVerCitas extends javax.swing.JFrame implements IVerCitas{
             //Limpiar tabla
             while(miModelo.getRowCount()>0)miModelo.removeRow(0);
             String titulo, user;
-            int cont=0, id;
+            int cont=0, id, count=1, idcita;
             Timestamp fecha;    
             for (CitaModel citaModel : data){
                 if (citaModel.getTitulo().equals(jtfCita.getText())){
-                    id=citaModel.getIdcita();
+                    idcita=citaModel.getIdcita();
+                    id=count;
                     titulo=citaModel.getTitulo();
                     fecha=citaModel.getFecha();
                     user=citaModel.getNombre_usuario();
-                    Object[] fila={id,titulo,fecha,user};
+                    Object[] fila={idcita,id,titulo,fecha,user};
                     miModelo.addRow(fila);
                     cont++;
+                    count++;
                 }
             }
             if (cont==0)
             JOptionPane.showMessageDialog(null,"Cita NO encontrada","Confirmacion",JOptionPane.ERROR_MESSAGE);
         } else JOptionPane.showMessageDialog(null,"Error de Entrada de Datos","Confirmacion",JOptionPane.ERROR_MESSAGE);
+    jbtAtCita.setEnabled(false);
     }
 
     @Override
@@ -301,7 +325,7 @@ public class JFVerCitas extends javax.swing.JFrame implements IVerCitas{
     public void buscarFechaTabla(List<CitaModel> data) {
         while(miModelo.getRowCount()>0)miModelo.removeRow(0);
         String titulo, user;
-        int cont=0, id;
+        int cont=0, id, count=1, idpaciente;
         Timestamp fecha;
         Date fecha2 = jdcFecha.getDate();
         Calendar calendario2 = Calendar.getInstance();
@@ -321,20 +345,23 @@ public class JFVerCitas extends javax.swing.JFrame implements IVerCitas{
                     titulo=citaModel.getTitulo();
                     fecha=citaModel.getFecha();
                     user=citaModel.getNombre_usuario();
-                    id=citaModel.getIdcita();
-                    Object[] fila={id,titulo,fecha,user};
+                    idpaciente=citaModel.getIdcita();
+                    id=count;
+                    Object[] fila={idpaciente,id,titulo,fecha,user};
                     miModelo.addRow(fila);
                     cont++;
+                    count++;
                 }
             }
         if (cont==0)
         JOptionPane.showMessageDialog(null,"Cita NO encontrada","Confirmacion",JOptionPane.ERROR_MESSAGE);
+        jbtAtCita.setEnabled(false);
     }
 
     @Override
     public void mostrarInfoCita(List<CitaModel> data) {
         int index = tblCitas.getSelectedRow();
-        int value = Integer.parseInt(miModelo.getValueAt(index, 0).toString()); 
+        int value = Integer.parseInt(miModelo.getValueAt(index, 0).toString());
         int idcita=0, idmedico=0, idusuario=0, num_historial=0;
         String titulo="", nota="", nombre_estado="", nombre_medico="", nombre_usuario="", nombre_paciente="";
         Timestamp fecha=null, fecha_creacion=null;
@@ -366,6 +393,27 @@ public class JFVerCitas extends javax.swing.JFrame implements IVerCitas{
                                             //"\nNumero del historial del paciente: "+num_historial);
     }
 
-    
+    @Override
+    public void verAtenderCita() {
+        jbtAtCita.setEnabled(true);
+    }
 
+    @Override
+    public int buscarNumeroHistorial(List<CitaModel> data) {
+        int index = tblCitas.getSelectedRow();
+        int value = Integer.parseInt(miModelo.getValueAt(index, 0).toString());
+        int num_historial=0;
+        for (CitaModel citaModel : data){
+            if(citaModel.getIdcita()==value){
+                num_historial = citaModel.getNumero_historial();
+            }
+        }
+        System.out.println(num_historial);
+        return num_historial;
+    }
+
+    @Override
+    public void ocultarAtenderCita() {
+        jbtAtCita.setEnabled(false);
+    }
 }

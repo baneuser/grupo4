@@ -6,6 +6,8 @@
 package vista.interfaces;
 
 import controlador.LoginController;
+import java.util.List;
+import model.HistorialModel;
 
 /**
  *
@@ -13,6 +15,11 @@ import controlador.LoginController;
  */
 public interface IAtenderCita extends IPadre {
     void setControlador(LoginController c);
+    void ingresarAtenderCita(List<HistorialModel> data);
+    int getNumHistorial(List<HistorialModel> data);
+    static final String JTA_SINTOMAS = "JTA_SINTOMAS";
+    static final String JTA_ANALISIS = "JTA_ANALISIS";
     static final String JBT_GUARDAR = "JBT_GUARDAR";
     static final String JBT_CERRAR = "JBT_CERRAR";
+    static final String JLB_NUMERO = "JLB_NUMERO";
 }

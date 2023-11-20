@@ -69,4 +69,58 @@ public class HistorialDAOImpl implements HistorialDAO {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @Override
+    public List<HistorialModel> getHistorialPacientes(int num_historial) {
+        List<HistorialModel> lista=null;
+        HistorialModel mHistorial = null;
+        try {
+            Conexion.getInstancia().conectar();
+            // Llamar al procedimiento almacenado
+            String sql = "{ CALL centromedico.getHistorialPaciente(?) }";
+            PreparedStatement preparedStatement = Conexion.getInstancia().conexion.prepareStatement(sql);
+            preparedStatement.setInt(1, num_historial);
+//            preparedStatement.execute();
+            
+            // Recuperar el resultado en un ResultSet
+//            ResultSet resultSet = callableStatement.getResultSet();
+            ResultSet resultSet = preparedStatement.executeQuery();
+//            boolean encontrado = resultSet.first();
+            
+            lista = new ArrayList<>();
+            while (resultSet.next()) {
+                mHistorial = new HistorialModel();
+                
+                mHistorial.setNombre_paciente(resultSet.getString("nombre_paciente"));
+                mHistorial.setNumero_historial(resultSet.getInt("numero_historial"));
+                mHistorial.setIdpaciente(resultSet.getInt("idpaciente"));
+                mHistorial.setFecha(resultSet.getDate("fecha"));
+                mHistorial.setSintomas(resultSet.getString("sintomas"));
+                mHistorial.setAnalisis(resultSet.getString("analisis"));
+                lista.add(mHistorial);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Exception ->"+ e.getMessage());
+        }
+        return lista;
+    }
+
+    @Override
+    public void actualizarHistorialYEstado(HistorialModel t) {
+        try {
+            Conexion.getInstancia().conectar();
+            
+            String sql = "CALL actualizarHistorial(?, ?, ?)";
+            try (PreparedStatement stmt = Conexion.getInstancia().conexion.prepareStatement(sql)) {
+                stmt.setString(1, t.getSintomas());
+                stmt.setString(2, t.getAnalisis());
+                stmt.setInt(3, t.getNumero_historial());
+                stmt.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Exception ->"+ e.getMessage());
+        }
+    }
+
 }

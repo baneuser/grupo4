@@ -47,6 +47,7 @@ import vista.interfaces.IRegistrarPaciente;
  import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.CitaModel;
 import model.HistorialModel;
 import model.MedicoModel;
@@ -156,8 +157,19 @@ public class LoginController implements ActionListener, ItemListener, MouseListe
             buscarCita();
         } else if (source == vVerCitas.getObjeto(IVerCitas.JBT_LIMPIAR)) {
             limpiarBusqueda();
+            vVerCitas.ocultarAtenderCita();
         } else if (source == vVerCitas.getObjeto(IVerCitas.JBT_BUSCARPF)) {
             buscarCitaPF();
+        } else if (source == vVerCitas.getObjeto(IVerCitas.JBT_ATCITA)) {
+            verAtenderCitas();
+        } else if (source == vAtenderCita.getObjeto(IVerCitas.JBT_CERRAR)) {
+            vAtenderCita.ocultar();
+        } else if (source == vAtenderCita.getObjeto(IAtenderCita.JBT_GUARDAR)) {
+            editarHistorialYEstado();
+            vAtenderCita.ocultar();
+            vVerCitas.ocultarAtenderCita();
+            List<CitaModel> lista = daoCitas.getCitasProgramadas();
+            vVerCitas.llenarTabla(lista);
         } else if (source == vCambioPassword.getObjeto(ICambioPassword.JBT_ACEPTAR)) {
             cambiarContrasena();
         } else if(source == vMenu.getObjeto(IMenu.JMI_REGISTRAR)){
@@ -471,6 +483,28 @@ private boolean validarFechaNacimiento(String fechaNacimiento) {
         vVerCitas.buscarFechaTabla(lista);
     }
     
+    private void verAtenderCitas(){
+        List<CitaModel> listacitas = daoCitas.getCitasProgramadas();
+        int num_hist = vVerCitas.buscarNumeroHistorial(listacitas);
+        List<HistorialModel> lista1 = daoHistorial.getHistorialPacientes(num_hist);
+        vAtenderCita.arranca();
+        vAtenderCita.ingresarAtenderCita(lista1);
+    }
+    
+    private void editarHistorialYEstado(){
+        System.out.print("Guardado");
+        String sintomas = vAtenderCita.getTexto(IAtenderCita.JTA_SINTOMAS);
+        String analisis = vAtenderCita.getTexto(IAtenderCita.JTA_ANALISIS);
+        int num_historial = Integer.parseInt(vAtenderCita.getTexto(IAtenderCita.JLB_NUMERO));
+        System.out.print(num_historial);
+        mHistorial.setSintomas(sintomas);
+        mHistorial.setAnalisis(analisis);
+        mHistorial.setNumero_historial(num_historial);
+        daoHistorial.actualizarHistorialYEstado(mHistorial);
+        JOptionPane.showMessageDialog(null, "Historial Médico actualizado.");
+    }
+    
+    
     private void verPerfil() {
         System.out.println("Nombre y apellido: " + mUsuario.getNombre() + " " + mUsuario.getApellido());
         cargarCabeceraPerfil();
@@ -646,7 +680,11 @@ private boolean validarFechaNacimiento(String fechaNacimiento) {
         Object source = e.getSource();
         List<CitaModel> lista = daoCitas.getCitasProgramadas();
         if (source == vVerCitas.getObjeto(IVerCitas.JTB_TABLA)) {
-            vVerCitas.mostrarInfoCita(lista);
+            if(e.getClickCount() == 1){
+                vVerCitas.verAtenderCita();
+            }
+            else if(e.getClickCount() == 2)
+                vVerCitas.mostrarInfoCita(lista);
         }
     }
 
