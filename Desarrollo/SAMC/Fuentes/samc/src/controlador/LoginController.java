@@ -395,11 +395,22 @@ private boolean validarFechaNacimiento(String fechaNacimiento) {
                         if(mRol.getIdrol()==3) // ROL MEDICO
                             vMenu.verVistaMedico();
                         
-                        if(mRol.getIdrol()==2) // ROL PACIENTE
+                        if(mRol.getIdrol()==2) {
+                            
                             vMenu.verVistaPaciente();
+                            
+                            
+                        }// ROL PACIENTE
+                         
                         
                         vLogin.ocultar();
                         vMenu.arranca();
+                        if(mRol.getIdrol()==2 && daoCitas.getNumeroCitasPaciente(mUsuario.getId())!= 0 ) {
+                            
+                            String a = String.valueOf(daoCitas.getNumeroCitasPaciente(mUsuario.getId()));
+                            vMenu.mostrarPanel("Numero de citas pendientes: "+ a);
+                        }
+                        
                     } else if (mUsuario.getActivo() == 0) {
                         vLogin.limpiarTexto(ILogin.JPF_PASSWORD);
                         vLogin.enfocar();

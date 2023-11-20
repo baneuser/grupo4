@@ -3,31 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/JFEspecialidades.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/interfaces/IRegistrarPaciente.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/model/CitaModel.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/model/HistorialModel.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/controlador/LoginController.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/dao/EspecialidadesDAOImpl.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/interfaces/IMenu.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/dao/UsuarioDAOImpl.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/interfaces/IReservarCita.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/dao/PacienteDAO.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/dao/MedicoDAOImpl.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/dao/ProgramacionDAOImpl.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/model/UsuarioModel.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/JFReservarCita.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/dao/ProgramacionDAO.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/dao/HistorialDAOImpl.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/dao/PacienteDAOImpl.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/main/Programa.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/model/ProgramacionModel.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/JFMenu.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/dao/Conexion.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/dao/HistorialDAO.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/dao/CitaDAOImpl.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/utilitarios/Item.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/dao/MedicoDAO.java</file>
+            <file>file:/C:/Users/usuario/Documents/NetBeansProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/JFLogin.java</file>
+            <file>file:/C:/Users/usuario/Documents/NetBeansProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/interfaces/IVerCitas.java</file>
+            <file>file:/C:/Users/usuario/Documents/NetBeansProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/interfaces/IRegistrarPaciente.java</file>
+            <file>file:/C:/Users/usuario/Documents/NetBeansProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/JFPerfil.java</file>
+            <file>file:/C:/Users/usuario/Documents/NetBeansProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/model/EspecialidadesModel.java</file>
+            <file>file:/C:/Users/usuario/Documents/NetBeansProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/model/HistorialModel.java</file>
+            <file>file:/C:/Users/usuario/Documents/NetBeansProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/main/Programa.java</file>
+            <file>file:/C:/Users/usuario/Documents/NetBeansProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/interfaces/IPadre.java</file>
+            <file>file:/C:/Users/usuario/Documents/NetBeansProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/interfaces/ICambioPassword.java</file>
+            <file>file:/C:/Users/usuario/Documents/NetBeansProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/JFVerCitas.java</file>
+            <file>file:/C:/Users/usuario/Documents/NetBeansProjects/grupo4/Desarrollo/SAMC/Fuentes/samc/src/vista/JFMenu.java</file>
         </group>
     </open-files>
 </project-private>

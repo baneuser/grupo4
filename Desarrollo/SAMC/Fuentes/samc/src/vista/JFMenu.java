@@ -10,7 +10,9 @@ import vista.interfaces.IMenu;
 //import controlador.MenuController;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.List;
 import javax.swing.JOptionPane;
+import model.CitaModel;
 
 /**
  *
@@ -32,6 +34,7 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
         jmiCitPro.setVisible(false);
         jmiReservarCita.setVisible(false);
         jmiRegistrarPaciente.setName(JMI_REGISTRAR);
+        
     }
 
     /**
@@ -130,7 +133,7 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
     private javax.swing.JMenuItem jmiRegistrarPaciente;
     private javax.swing.JMenuItem jmiReservarCita;
     // End of variables declaration//GEN-END:variables
-
+    
     // <editor-fold defaultstate="collapsed" desc="IPadre">
     @Override
     public void arranca() {
@@ -182,7 +185,7 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
         this.setTitle(txt);
     }
     // </editor-fold>
-
+    
     @Override
     public void setControlador(LoginController c) {
         jmiPerfil.addActionListener(c);
@@ -224,7 +227,7 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
         }
         return o;
     }
-
+    
     @Override
     public void setTexto(String obj, String txt) {
     }
@@ -257,5 +260,29 @@ public class JFMenu extends javax.swing.JFrame implements IMenu {
     @Override
     public void ocultarVistaPaciente() {
         jmiReservarCita.setVisible(false);
+    }
+    public void mostrarInfoCitasPendientes(List<CitaModel> data) {
+      StringBuilder mensaje = new StringBuilder("Tiene " + data.size() + " citas pendientes:\n");
+
+      int count = 1;
+      for (CitaModel citaModel : data) {
+          mensaje.append(count).append(". ")
+                  .append("Titulo: ").append(citaModel.getTitulo())
+                  .append(", Fecha de la cita: ").append(citaModel.getFecha())
+                  .append("\n");
+          count++;
+      }
+
+      JOptionPane.showMessageDialog(null, mensaje.toString(), "Citas Pendientes", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    // Método para mostrar el mensaje con la cantidad de citas pendientes
+    private void mostrarMensajeCitasPendientes(int cantidadCitasPendientes) {
+        String mensaje = "Tienes " + cantidadCitasPendientes + " citas pendientes.";
+        JOptionPane.showMessageDialog(null, mensaje, "Citas Pendientes", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void llenarTabla(List<CitaModel> citasPendientes) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

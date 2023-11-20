@@ -70,11 +70,16 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
         jtfUsuario.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jtfUsuario.setForeground(new java.awt.Color(153, 153, 153));
         jtfUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtfUsuario.setText("jrattry2");
+        jtfUsuario.setText("Ingresar");
         jtfUsuario.setBorder(null);
         jtfUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jtfUsuarioMousePressed(evt);
+            }
+        });
+        jtfUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfUsuarioActionPerformed(evt);
             }
         });
         getContentPane().add(jtfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 251, 30));
@@ -91,6 +96,11 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jbtAceptarMouseExited(evt);
+            }
+        });
+        jbtAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtAceptarActionPerformed(evt);
             }
         });
         getContentPane().add(jbtAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 370, 230, 40));
@@ -110,7 +120,7 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
 
         jpfPassword.setForeground(new java.awt.Color(153, 153, 153));
         jpfPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jpfPassword.setText("Z2z78sJ3b");
+        jpfPassword.setText("*********");
         jpfPassword.setBorder(null);
         jpfPassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -219,7 +229,7 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
     }//GEN-LAST:event_jbtLimpiarMouseExited
 
     private void jtfUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtfUsuarioMousePressed
-        if(jtfUsuario.getText().equals("Ingresar correo electronico")){    
+        if(jtfUsuario.getText().equals("Ingresar")){    
             jtfUsuario.setText("");
             jtfUsuario.setForeground(Color.black);
         }
@@ -231,14 +241,22 @@ public class JFLogin extends javax.swing.JFrame implements ILogin {
 
     private void jpfPasswordMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpfPasswordMousePressed
         if (jtfUsuario.getText().isEmpty()){
-            jtfUsuario.setText("Ingresar correo electronico");
+            jtfUsuario.setText("Ingresar");
             jtfUsuario.setForeground(Color.gray);
         }
-        if (String.valueOf(jpfPassword.getPassword()).equals("****")){
+        if (String.valueOf(jpfPassword.getPassword()).equals("*********")){
             jpfPassword.setText("");
             jpfPassword.setForeground(Color.black);
         }
     }//GEN-LAST:event_jpfPasswordMousePressed
+
+    private void jbtAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtAceptarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtAceptarActionPerformed
+
+    private void jtfUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfUsuarioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel exitPanel;
