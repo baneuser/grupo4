@@ -12,6 +12,7 @@ import java.sql.Date;
  * @author Usuario
  */
 public class HistorialModel {
+    private String nombre_paciente;
     private int numero_historial;
     private int idpaciente;
     private Date fecha;
@@ -56,5 +57,13 @@ public class HistorialModel {
 
     public void setAnalisis(String analisis) {
         this.analisis = analisis;
+    }
+    
+    public String getNombre_paciente() {
+        return nombre_paciente;
+    }
+
+    public void setNombre_paciente(String nombre_paciente) {
+        this.nombre_paciente = nombre_paciente;
     }
 }

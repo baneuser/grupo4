@@ -21,10 +21,14 @@ public interface IVerCitas extends IPadre {
     void limpiarBusqueda(List<CitaModel> data);
     void buscarFechaTabla(List<CitaModel> data);
     void mostrarInfoCita(List<CitaModel> data);
+    void verAtenderCita();
+    void ocultarAtenderCita();
+    int buscarNumeroHistorial(List<CitaModel> data);
     
     static final String JTB_TABLA = "JTB_TABLA";
     static final String JBT_BUSCAR = "JBT_BUSCAR";
     static final String JBT_CERRAR = "JBT_CERRAR";
     static final String JBT_LIMPIAR = "JBT_LIMPIAR";
     static final String JBT_BUSCARPF = "JBT_BUSCARPF";
+    static final String JBT_ATCITA = "JBT_ATCITA";
 }

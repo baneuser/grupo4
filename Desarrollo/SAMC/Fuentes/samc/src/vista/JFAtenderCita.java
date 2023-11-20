@@ -7,8 +7,12 @@ package vista;
 import controlador.LoginController;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.HistorialModel;
 import vista.interfaces.IAtenderCita;
 
 /**
@@ -22,6 +26,11 @@ public class JFAtenderCita extends javax.swing.JFrame implements IAtenderCita{
      */
     public JFAtenderCita() {
         initComponents();
+        jbtCerrar.setName(JBT_CERRAR);
+        jbtGuardar.setName(JBT_GUARDAR);
+        txtaSintomas.setName(JTA_SINTOMAS);
+        txtaAnalisis.setName(JTA_ANALISIS);
+        jlbNum.setName(JLB_NUMERO);
     }
 
     /**
@@ -33,66 +42,79 @@ public class JFAtenderCita extends javax.swing.JFrame implements IAtenderCita{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        txtPaciente = new javax.swing.JTextField();
+        txtFecha = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtaAnalisis = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        txtaSintomas = new javax.swing.JTextArea();
+        jbtGuardar = new javax.swing.JButton();
         jbtCerrar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jlbNum = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 170, -1));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 170, -1));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 170, -1));
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 170, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtPaciente.setEditable(false);
+        getContentPane().add(txtPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 240, -1));
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 240, 60));
+        txtFecha.setEditable(false);
+        getContentPane().add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 240, -1));
 
-        jButton1.setText("Guardar");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, -1, -1));
+        txtaAnalisis.setColumns(20);
+        txtaAnalisis.setRows(5);
+        jScrollPane2.setViewportView(txtaAnalisis);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 240, 60));
+
+        txtaSintomas.setColumns(20);
+        txtaSintomas.setRows(5);
+        jScrollPane1.setViewportView(txtaSintomas);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 240, 60));
+
+        jbtGuardar.setText("Guardar");
+        getContentPane().add(jbtGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, -1, -1));
 
         jbtCerrar.setText("Salir");
-        getContentPane().add(jbtCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, 70, -1));
+        getContentPane().add(jbtCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 340, 70, -1));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("# ");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 20, -1));
+
+        jlbNum.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jlbNum.setForeground(new java.awt.Color(255, 255, 255));
+        jlbNum.setText("Num");
+        getContentPane().add(jlbNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Análisis");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Síntomas");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Fecha");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Apellido");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Nombre");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
+        jLabel4.setText("Paciente");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -100,10 +122,10 @@ public class JFAtenderCita extends javax.swing.JFrame implements IAtenderCita{
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 300, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 440, 310));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 440, 350));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/image (1).png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 360));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -114,7 +136,6 @@ public class JFAtenderCita extends javax.swing.JFrame implements IAtenderCita{
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -124,17 +145,20 @@ public class JFAtenderCita extends javax.swing.JFrame implements IAtenderCita{
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbtCerrar;
+    private javax.swing.JButton jbtGuardar;
+    private javax.swing.JLabel jlbNum;
+    private javax.swing.JTextField txtFecha;
+    private javax.swing.JTextField txtPaciente;
+    private javax.swing.JTextArea txtaAnalisis;
+    private javax.swing.JTextArea txtaSintomas;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void setControlador(LoginController c) {
-        
+        jbtCerrar.addActionListener(c);
+        jbtGuardar.addActionListener(c);
     }
 
     @Override
@@ -156,7 +180,7 @@ public class JFAtenderCita extends javax.swing.JFrame implements IAtenderCita{
     
     @Override
     public void ocultar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.setVisible(false);
     }
 
     @Override
@@ -186,21 +210,84 @@ public class JFAtenderCita extends javax.swing.JFrame implements IAtenderCita{
 
     @Override
     public Object getObjeto(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Object o = null;
+        switch (id) {
+            case JBT_CERRAR:
+                o = jbtCerrar;
+                break;
+            case JBT_GUARDAR:
+                o = jbtGuardar;
+                break;
+            default:
+                throw new AssertionError();
+        }
+        return o;
     }
 
     @Override
     public void setTexto(String obj, String txt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        switch (obj) {
+            case JLB_NUMERO:
+                jlbNum.setText(txt);
+                break;
+            default:
+                throw new AssertionError();
+        }
     }
 
     @Override
     public String getTexto(String obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String txt = null;
+        switch (obj) {
+            case JTA_SINTOMAS:
+                txt = txtaSintomas.getText();
+                break;
+            case JTA_ANALISIS:
+                txt = txtaAnalisis.getText();
+                break;
+            case JLB_NUMERO:
+                txt = jlbNum.getText();
+                break;
+            default:
+                throw new AssertionError();
+        }
+        return txt;
     }
 
     @Override
     public void limpiarTexto(String obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void ingresarAtenderCita(List<HistorialModel> data) {
+        int numero_historial=0, idpaciente=0;
+        Date fecha=null;
+        String sintomas="", analisis="", nombrePaciente="";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        //System.out.println(fechaComoCadena);
+        for (HistorialModel historialModel : data){
+                nombrePaciente = historialModel.getNombre_paciente();
+                numero_historial = historialModel.getNumero_historial();
+                idpaciente = historialModel.getIdpaciente();
+                sintomas = historialModel.getSintomas();
+                analisis = historialModel.getAnalisis();
+                fecha = historialModel.getFecha();
+        }
+        String fechaComoCadena = sdf.format(fecha);
+        txtPaciente.setText(nombrePaciente);
+        txtFecha.setText(fechaComoCadena);
+        txtaSintomas.setText(sintomas);
+        txtaAnalisis.setText(analisis);
+        jlbNum.setText(String.valueOf(numero_historial));
+    }
+
+    @Override
+    public int getNumHistorial(List<HistorialModel> data) {
+        int numero_historial=0;
+        for (HistorialModel historialModel : data){
+                numero_historial = historialModel.getNumero_historial();
+        }
+        return numero_historial;
     }
 }
