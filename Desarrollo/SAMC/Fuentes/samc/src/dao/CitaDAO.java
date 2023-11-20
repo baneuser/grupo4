@@ -13,4 +13,5 @@ import model.CitaModel;
  */
 public interface CitaDAO extends CRUD<CitaModel>{
     List<CitaModel> getCitasProgramadas();
+    int getNumeroCitasPaciente(int idusuario);
 }

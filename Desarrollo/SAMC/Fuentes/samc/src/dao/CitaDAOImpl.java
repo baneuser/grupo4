@@ -135,4 +135,35 @@ public class CitaDAOImpl implements CitaDAO{
         }
         return lista;
     }
+
+    @Override
+    public int getNumeroCitasPaciente(int idusuario) {
+        int resultado = -1;
+        try {
+            Conexion.getInstancia().conectar();
+            String sql = "{ ? = call centromedico.getNumeroCitasPaciente(?) }";
+            CallableStatement callableStatement = Conexion.getInstancia().conexion.prepareCall(sql);
+            
+            // Establecer los parámetros de entrada
+            callableStatement.setInt(2, idusuario);
+            
+            
+            // Definir el parámetro de salida
+            callableStatement.registerOutParameter(1, Types.INTEGER);
+            
+            // Ejecutar la función
+            callableStatement.execute();
+            
+            // Obtener el valor de retorno
+            resultado = callableStatement.getInt(1);
+            
+            // Cerrar la conexión
+            Conexion.getInstancia().cerrar();
+        } catch (Exception e) {
+            System.out.println("Exception ->"+ e.getMessage());
+        }
+        System.out.println("El resultado de validarAcceso es: " + resultado);
+        
+        return resultado; //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -97,6 +97,11 @@ public class JFVerCitas extends javax.swing.JFrame implements IVerCitas{
         getContentPane().add(jbtLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 140, -1));
 
         jbtBuscar.setText("Buscar");
+        jbtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtBuscarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jbtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, -1, -1));
 
         jbtCerrar.setText("Cerrar");
@@ -124,6 +129,10 @@ public class JFVerCitas extends javax.swing.JFrame implements IVerCitas{
     private void tblCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCitasMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tblCitasMouseClicked
+
+    private void jbtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtBuscarActionPerformed
 
     /**
      * @param args the command line arguments
